@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Khai Vận & Sổ Tay">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#08080b">
+
+<!-- PWA Manifest Data URI -->
+<!-- PWA Manifest & Icons -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<!-- Old data manifest charset=utf-8,%7B%22name%22%3A%22L%E1%BB%8Bch%20Khai%20V%E1%BA%ADn%20%26%20S%E1%BB%95%20Tay%20V%C3%B5%20T%E1%BA%A5n%20%C4%90%E1%BA%A1t%22%2C%22short_name%22%3A%22Khai%20V%E1%BA%ADn%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2308080b%22%2C%22theme_color%22%3A%22%2308080b%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'115'%20fill%3D'%2308080b'%2F%253E%253Ccircle%20cx%3D'256'%20cy%3D'256'%20r%3D'190'%20fill%3D'none'%20stroke%3D'%23d4af37'%20stroke-width%3D'12'%2F%253E%253Cpolygon%20points%3D'256%2C120%20295%2C200%20384%2C213%20320%2C275%20335%2C364%20256%2C322%20177%2C364%20192%2C275%20128%2C213%20217%2C200'%20fill%3D'%23e8cfa1'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+
+<!-- Apple Touch Icon Data URI -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='115' fill='%2308080b'/%3E%3Ccircle cx='256' cy='256' r='190' fill='none' stroke='%23d4af37' stroke-width='14'/%3E%3Cpolygon points='256,120 295,200 384,213 320,275 335,364 256,322 177,364 192,275 128,213 217,200' fill='%23e8cfa1'/%3E%3C/svg%3E">
+
+<title>Khai Vận & Sổ Tay Bát Tự — Võ Tấn Đạt</title>
+<style>
+:root{
+  --bg: #08080b;
+  --surface: #121217;
+  --surface-elevated: #181822;
+  --surface-card: rgba(26, 26, 36, 0.7);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-gold: rgba(226, 192, 117, 0.35);
+  
+  --gold: #d4af37;
+  --gold-champagne: #e8cfa1;
+  --gold-glow: rgba(212, 175, 55, 0.25);
+  --emerald: #34c759;
+  --ruby: #ff453a;
+  
+  --text-primary: #f5f5f7;
+  --text-secondary: #98989f;
+  --text-tertiary: #636366;
+  
+  --font-serif: -apple-system, BlinkMacSystemFont, "Playfair Display", "Times New Roman", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bot: env(safe-area-inset-bottom, 0px);
+}
+
+*{-webkit-tap-highlight-color:transparent;box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:var(--bg);
+  color:var(--text-primary);
+  font-family:var(--font-sans);
+  font-size:15px;
+  line-height:1.45;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+body{
+  padding-top:calc(var(--safe-top) + 10px);
+  padding-bottom:calc(var(--safe-bot) + 82px);
+  background:
+    radial-gradient(600px 300px at 50% -10%, rgba(212, 175, 55, 0.12), transparent 75%),
+    radial-gradient(400px 400px at 80% 90%, rgba(52, 199, 89, 0.05), transparent 70%),
+    var(--bg);
+  background-attachment:fixed;
+}
+
+.container{
+  max-width:440px;
+  margin:0 auto;
+  padding:0 16px;
+}
+
+/* ================= TOP HEADER ================= */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:6px 0 14px;
+}
+.brand{
+  display:flex;
+  flex-direction:column;
+}
+.brand-title{
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:1px;
+  color:var(--gold-champagne);
+  text-transform:uppercase;
+  font-family:var(--font-serif);
+}
+.brand-sub{
+  font-size:11px;
+  color:var(--text-secondary);
+  letter-spacing:0.3px;
+}
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.btn-install{
+  background:linear-gradient(135deg, rgba(212,175,55,0.22), rgba(212,175,55,0.08));
+  border:1px solid var(--border-gold);
+  border-radius:20px;
+  padding:5px 12px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--gold-champagne);
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  transition:all .2s ease;
+  box-shadow:0 0 12px rgba(212,175,55,0.15);
+}
+.btn-install:active{transform:scale(0.96)}
+
+/* ================= MAIN APP VIEWS ================= */
+.app-view{display:none}
+.app-view.active{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ================= SECTION 1: LỊCH CẮT TÓC ================= */
+.hero{
+  background:linear-gradient(170deg, #181722 0%, #101016 100%);
+  border:1px solid var(--border-gold);
+  border-radius:22px;
+  padding:18px 18px 16px;
+  margin-bottom:14px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 12px 36px -10px rgba(0,0,0,0.6), 0 0 24px -6px var(--gold-glow);
+  cursor:pointer;
+}
+.hero-glow{
+  position:absolute;
+  top:-60px;
+  right:-60px;
+  width:160px;
+  height:160px;
+  background:radial-gradient(circle, rgba(212, 175, 55, 0.25), transparent 70%);
+  pointer-events:none;
+}
+.hero-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.hero-label{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-weight:700;
+  color:var(--gold);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.hero-label::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 8px var(--gold);
+}
+.hero-date-pill{
+  font-size:12px;
+  color:var(--text-secondary);
+  background:rgba(255,255,255,0.05);
+  border-radius:12px;
+  padding:2px 8px;
+}
+
+.hero-main{margin-bottom:12px}
+.hero-status{
+  font-family:var(--font-serif);
+  font-size:23px;
+  font-weight:800;
+  line-height:1.2;
+  margin-bottom:4px;
+}
+.status-gold{
+  background:linear-gradient(135deg, #ffffff 10%, #f7e3a3 60%, #d4af37 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.status-green{color:#5ce38f}
+.status-red{color:#ff6961}
+
+.hero-stars-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+}
+.hero-stars{
+  color:var(--gold);
+  font-size:15px;
+  letter-spacing:3px;
+}
+.hero-score-badge{
+  font-size:11px;
+  font-weight:700;
+  background:rgba(212,175,55,0.15);
+  color:var(--gold-champagne);
+  padding:2px 7px;
+  border-radius:6px;
+  border:0.5px solid rgba(212,175,55,0.3);
+}
+
+.hero-action{
+  font-size:14px;
+  color:var(--text-primary);
+  line-height:1.45;
+  margin-bottom:12px;
+}
+
+.hero-hour-box{
+  background:rgba(0, 0, 0, 0.35);
+  border:1px solid rgba(212, 175, 55, 0.2);
+  border-radius:14px;
+  padding:9px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  font-size:12.5px;
+}
+.hh-left{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--gold-champagne);
+}
+.hh-right{
+  font-size:11.5px;
+  color:var(--text-secondary);
+}
+
+/* Sub-switch: Ngày vàng vs Lịch tháng */
+.sub-tabs{
+  display:flex;
+  background:#14141c;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:3px;
+  margin-bottom:14px;
+}
+.sub-tab-btn{
+  flex:1;
+  background:transparent;
+  border:none;
+  color:var(--text-secondary);
+  font-size:12.5px;
+  font-weight:600;
+  padding:7px 0;
+  border-radius:9px;
+  cursor:pointer;
+  transition:all .2s ease;
+  text-align:center;
+}
+.sub-tab-btn.active{
+  background:var(--surface-elevated);
+  color:var(--gold-champagne);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* Stream view cards */
+.stream-list{display:flex;flex-direction:column;gap:9px}
+.gold-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:12px 14px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+.gold-card.is-today{
+  border-color:var(--gold);
+  background:linear-gradient(135deg, rgba(212,175,55,0.08), rgba(26,26,35,0.7));
+}
+.gold-card.is-today::before{
+  content:"HÔM NAY";
+  position:absolute;
+  top:0;
+  right:0;
+  background:var(--gold);
+  color:#111;
+  font-size:8.5px;
+  font-weight:800;
+  padding:2px 7px;
+  border-bottom-left-radius:8px;
+}
+.gc-date{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-width:42px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:11px;
+  padding:5px 4px;
+}
+.gc-day{font-size:19px;font-weight:800;color:#fff;line-height:1}
+.gc-mo{font-size:9.5px;color:var(--text-secondary);margin-top:2px}
+.gc-title{font-size:14px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:6px}
+.gc-stars{color:var(--gold);font-size:11px;letter-spacing:1px}
+.gc-sub{font-size:11.5px;color:var(--text-secondary)}
+.gc-hour{font-size:11px;color:var(--gold-champagne);margin-top:2px}
+.gc-arrow{color:var(--text-tertiary);font-size:15px}
+
+/* Calendar Month Grid */
+.cal-wrapper{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:12px 10px;
+}
+.cal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+  padding:0 4px;
+}
+.cal-month-title{
+  font-size:14.5px;
+  font-weight:700;
+  color:var(--gold-champagne);
+  font-family:var(--font-serif);
+}
+.cal-nav-btn{
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);
+  color:var(--text-primary);
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-size:12px;
+}
+.cal-weekdays{
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  text-align:center;
+  font-size:10.5px;
+  color:var(--text-tertiary);
+  font-weight:600;
+  padding-bottom:6px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  margin-bottom:4px;
+}
+.cal-grid{display:grid;grid-template-columns:repeat(7, 1fr);gap:2px}
+.cal-cell{
+  aspect-ratio:1;
+  border-radius:9px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  position:relative;
+  padding:2px;
+}
+.cal-cell.empty{pointer-events:none}
+.cal-cell.today{border:1px solid var(--gold)!important}
+.cell-sol{font-size:13.5px;font-weight:600;line-height:1}
+.cell-lun{font-size:8.5px;color:var(--text-tertiary);margin-top:2px;line-height:1}
+.cell-dot{width:4px;height:4px;border-radius:50%;margin-top:2px;opacity:0}
+.star-5 .cell-dot{opacity:1;background:var(--gold);box-shadow:0 0 5px var(--gold)}
+.star-5 .cell-sol{color:#fff;font-weight:700}
+.star-4 .cell-dot{opacity:1;background:var(--emerald)}
+.star-1 .cell-sol{color:var(--text-tertiary)}
+
+/* ================= SECTION 2: SỔ TAY BÁT TỰ ================= */
+.handbook-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px 16px;
+  margin-bottom:12px;
+  position:relative;
+}
+.h-tag{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-weight:700;
+  color:var(--gold);
+  margin-bottom:6px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.h-title{
+  font-size:17px;
+  font-weight:700;
+  color:#fff;
+  font-family:var(--font-serif);
+  margin-bottom:10px;
+}
+
+.pillar-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+}
+.pillar-item{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:12px;
+  padding:10px 12px;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.p-badge{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:rgba(212,175,55,0.15);
+  color:var(--gold-champagne);
+  font-size:11px;
+  font-weight:800;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+  margin-top:2px;
+}
+.p-body b{color:var(--gold-champagne);font-size:13.5px}
+.p-body p{font-size:12px;color:var(--text-secondary);margin-top:2px}
+
+/* Do / Don't Split Cards */
+.split-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+.do-col, .dont-col{
+  background:rgba(0,0,0,0.25);
+  border-radius:14px;
+  padding:12px;
+}
+.do-col{border-left:3px solid var(--emerald)}
+.dont-col{border-left:3px solid var(--ruby)}
+.col-title{font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:6px}
+.do-col .col-title{color:var(--emerald)}
+.dont-col .col-title{color:var(--ruby)}
+.col-list{list-style:none;font-size:12px;line-height:1.45}
+.col-list li{margin-bottom:6px;color:var(--text-secondary)}
+.col-list li b{color:#fff}
+
+/* Law of Cự Môn */
+.law-item{
+  background:rgba(0,0,0,0.3);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:12px;
+  padding:10px 12px;
+  margin-bottom:8px;
+  font-size:12.5px;
+  line-height:1.45;
+}
+.law-item b{color:var(--gold-champagne)}
+
+/* ================= SECTION 3: HÀNH TRÌNH (CHECKLIST) ================= */
+.check-progress-bar{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:14px 16px;
+  margin-bottom:14px;
+}
+.cp-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--gold-champagne);
+}
+.progress-track{
+  height:7px;
+  background:rgba(255,255,255,0.08);
+  border-radius:10px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--gold), var(--emerald));
+  transition:width .3s ease;
+}
+.btn-reset-check{
+  background:none;
+  border:none;
+  color:var(--text-tertiary);
+  font-size:11.5px;
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+.ck-group{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px 14px;
+  margin-bottom:10px;
+}
+.ck-group-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--gold-champagne);
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.ck-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px dashed rgba(255,255,255,0.06);
+  cursor:pointer;
+}
+.ck-item:last-child{border-bottom:none}
+.ck-item input{
+  width:18px;
+  height:18px;
+  accent-color:var(--gold);
+  margin-top:2px;
+  flex:none;
+  cursor:pointer;
+}
+.ck-text{
+  font-size:13px;
+  color:var(--text-primary);
+  line-height:1.4;
+  transition:.2s;
+}
+.ck-item input:checked + .ck-text{
+  color:var(--text-tertiary);
+  text-decoration:line-through;
+}
+
+/* ================= SECTION 4: GHI CHÚ (JOURNAL) ================= */
+.journal-box{
+  background:var(--surface);
+  border:1px solid var(--border-gold);
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.5);
+}
+.j-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+.j-title{
+  font-size:16px;
+  font-weight:700;
+  font-family:var(--font-serif);
+  color:var(--gold-champagne);
+}
+.j-time{
+  font-size:11px;
+  color:var(--text-secondary);
+}
+.j-textarea{
+  width:100%;
+  height:240px;
+  background:rgba(0,0,0,0.35);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  color:var(--text-primary);
+  font-family:var(--font-sans);
+  font-size:14px;
+  line-height:1.55;
+  resize:none;
+  outline:none;
+  margin-bottom:10px;
+}
+.j-textarea:focus{border-color:var(--gold)}
+.j-actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.j-status{font-size:11.5px;color:var(--emerald)}
+.btn-j-copy{
+  background:rgba(255,255,255,0.06);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:6px 12px;
+  font-size:12px;
+  color:var(--text-primary);
+  cursor:pointer;
+}
+
+/* ================= FIXED BOTTOM NAV BAR (iOS Glass) ================= */
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(18, 18, 24, 0.88);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding:8px 12px calc(var(--safe-bot) + 8px);
+  z-index:80;
+}
+.nav-inner{
+  max-width:440px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:4px;
+}
+.nav-item{
+  background:none;
+  border:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  color:var(--text-tertiary);
+  cursor:pointer;
+  padding:4px 0;
+  transition:all .18s ease;
+}
+.nav-icon{font-size:18px;line-height:1}
+.nav-label{font-size:10px;font-weight:600;letter-spacing:0.3px}
+.nav-item.active{
+  color:var(--gold-champagne);
+}
+.nav-item.active .nav-icon{
+  transform:scale(1.1);
+  filter:drop-shadow(0 0 6px var(--gold-glow));
+}
+
+/* ================= INSTALL APP MODAL ================= */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease;
+  z-index:95;
+}
+.modal-backdrop.active{
+  opacity:1;
+  pointer-events:auto;
+}
+.modal{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -48%) scale(0.95);
+  width:calc(100% - 32px);
+  max-width:390px;
+  background:#14141c;
+  border:1px solid var(--border-gold);
+  border-radius:22px;
+  padding:22px 20px;
+  box-shadow:0 16px 40px rgba(0,0,0,0.8);
+  opacity:0;
+  pointer-events:none;
+  transition:all .25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index:100;
+}
+.modal.active{
+  transform:translate(-50%, -50%) scale(1);
+  opacity:1;
+  pointer-events:auto;
+}
+.modal-title{
+  font-family:var(--font-serif);
+  font-size:18px;
+  font-weight:800;
+  color:var(--gold-champagne);
+  margin-bottom:6px;
+  text-align:center;
+}
+.modal-sub{
+  font-size:12.5px;
+  color:var(--text-secondary);
+  text-align:center;
+  margin-bottom:16px;
+}
+.install-step{
+  background:rgba(0,0,0,0.3);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 14px;
+  margin-bottom:10px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+.is-num{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:var(--gold);
+  color:#111;
+  font-size:11px;
+  font-weight:800;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+  margin-top:2px;
+}
+.is-text{
+  font-size:13px;
+  line-height:1.45;
+  color:var(--text-primary);
+}
+.is-text b{color:var(--gold-champagne)}
+.btn-native-install{
+  width:100%;
+  background:linear-gradient(135deg, var(--gold), #b8860b);
+  border:none;
+  color:#111;
+  font-size:14px;
+  font-weight:800;
+  padding:12px 0;
+  border-radius:12px;
+  cursor:pointer;
+  margin-bottom:8px;
+  display:none;
+}
+.btn-close-modal{
+  width:100%;
+  background:rgba(255,255,255,0.06);
+  border:none;
+  color:var(--text-secondary);
+  font-size:13px;
+  font-weight:600;
+  padding:10px 0;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+/* ================= SLIDING DRAWER ================= */
+.drawer-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease;
+  z-index:90;
+}
+.drawer-backdrop.active{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  max-width:440px;
+  margin:0 auto;
+  background:#14141d;
+  border:1px solid var(--border-gold);
+  border-bottom:none;
+  border-top-left-radius:24px;
+  border-top-right-radius:24px;
+  padding:20px 20px calc(var(--safe-bot) + 24px);
+  transform:translateY(100%);
+  transition:transform .28s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index:100;
+  box-shadow:0 -10px 40px rgba(0,0,0,0.8);
+}
+.drawer.active{transform:translateY(0)}
+.drawer-handle{
+  width:36px;
+  height:4px;
+  border-radius:2px;
+  background:rgba(255,255,255,0.2);
+  margin:0 auto 16px;
+}
+.dw-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.dw-date{font-size:18px;font-weight:800;color:#fff;font-family:var(--font-serif)}
+.dw-lunar{font-size:12.5px;color:var(--text-secondary);margin-top:2px}
+.dw-badge{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:8px}
+.dw-stars-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.dw-stars{color:var(--gold);font-size:16px;letter-spacing:2px}
+.dw-score{font-size:12px;color:var(--gold-champagne);font-weight:600}
+.dw-card{
+  background:rgba(0,0,0,0.3);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 14px;
+  margin-bottom:10px;
+  font-size:13px;
+  line-height:1.45;
+}
+.dw-card b{color:var(--gold-champagne)}
+.dw-close-btn{
+  width:100%;
+  background:rgba(255,255,255,0.08);
+  border:none;
+  color:var(--text-primary);
+  font-size:14px;
+  font-weight:600;
+  padding:12px 0;
+  border-radius:12px;
+  cursor:pointer;
+  margin-top:8px;
+}
+
+.footer-note{
+  text-align:center;
+  font-size:11px;
+  color:var(--text-tertiary);
+  margin-top:16px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- TOP HEADER -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-title">Khai Vận &middot; Võ Tấn Đạt</div>
+      <div class="brand-sub">Sổ Tay Bát Tự &middot; Dụng Thần Hỏa</div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-install" onclick="showInstallModal()">
+        <span>📲</span> Cài App
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= VIEW 1: LỊCH CẮT TÓC ================= -->
+  <main class="app-view active" id="viewHaircut">
+    
+    <!-- Hero Card Hôm Nay -->
+    <section class="hero" id="heroCard">
+      <div class="hero-glow"></div>
+      <div class="hero-top">
+        <div class="hero-label">Hôm nay</div>
+        <div class="hero-date-pill" id="hDatePill">04/11 &middot; 26/09 ÂL</div>
+      </div>
+      
+      <div class="hero-main">
+        <div class="hero-status status-gold" id="hVerdict">HÔM NAY ĐẠI CÁT</div>
+        <div class="hero-stars-row">
+          <div class="hero-stars" id="hStars">★★★★★</div>
+          <div class="hero-score-badge" id="hScoreBadge">5.0 / 5.0</div>
+        </div>
+        <div class="hero-action" id="hAction">Rất nên cắt tóc! Vận tài lộc thăng tiến, khởi sắc nguyên khí.</div>
+      </div>
+
+      <div class="hero-hour-box" id="hHourBox">
+        <div class="hh-left">
+          <span>⏰</span>
+          <span id="hHourText">Giờ Vàng: <b>07:00 – 09:00</b> (Bính Thìn)</span>
+        </div>
+        <div class="hh-right">Dụng Thần Hỏa</div>
+      </div>
+    </section>
+
+    <!-- Sub-switcher: Ngày Vàng vs Lịch Tháng -->
+    <nav class="sub-tabs">
+      <button class="sub-tab-btn active" id="btnSubStream" onclick="switchSubTab('stream')">
+        ✨ Ngày Vàng Tháng <span id="lblStreamMonth">11</span>
+      </button>
+      <button class="sub-tab-btn" id="btnSubCal" onclick="switchSubTab('cal')">
+        📅 Lịch Toàn Cảnh
+      </button>
+    </nav>
+
+    <!-- Sub-view 1: Stream Top Days -->
+    <div id="subViewStream">
+      <div class="stream-list" id="streamList"></div>
+    </div>
+
+    <!-- Sub-view 2: Full Calendar -->
+    <div id="subViewCal" style="display:none">
+      <div class="cal-wrapper">
+        <div class="cal-head">
+          <div class="cal-month-title" id="calMonthLabel">Tháng 11 &middot; 2026</div>
+          <div style="display:flex;gap:6px">
+            <button class="cal-nav-btn" onclick="navMonth(-1)">‹</button>
+            <button class="cal-nav-btn" onclick="navMonth(1)">›</button>
+          </div>
+        </div>
+        <div class="cal-weekdays">
+          <div>CN</div><div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div><div>T7</div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+    </div>
+
+    <p class="footer-note">Đo ni đóng giày cho Bát Tự Mậu Dần &middot; Kiêng Thân</p>
+  </main>
+
+  <!-- ================= VIEW 2: SỔ TAY BÁT TỰ ================= -->
+  <main class="app-view" id="viewHandbook">
+    
+    <!-- 5 Trụ Cột Bản Mệnh -->
+    <div class="handbook-card">
+      <div class="h-tag">💎 Cốt Lõi Vận Mệnh</div>
+      <div class="h-title">5 Trụ Cột Thực Hành Tối Thượng</div>
+      <div class="pillar-grid">
+        <div class="pillar-item">
+          <div class="p-badge">1</div>
+          <div class="p-body">
+            <b>Gặp HỎA thì HÀNH</b>
+            <p>Tháng 5, 6, 7 & 10 DL (Tỵ, Ngọ, Mùi, Tuất) & Khung 7h–11h sáng: Tự tin quyết đoán, ký kết, đàm phán việc lớn.</p>
+          </div>
+        </div>
+        <div class="pillar-item">
+          <div class="p-badge">2</div>
+          <div class="p-body">
+            <b>Gặp THỦY thì TÀNG</b>
+            <p>Tháng 11, 12 & 1 DL (Hợi, Tý, Sửu): Thu liễm, bồi dưỡng nội lực, học tập, không hùn vốn mạo hiểm.</p>
+          </div>
+        </div>
+        <div class="pillar-item">
+          <div class="p-badge">3</div>
+          <div class="p-body">
+            <b>TUYỆT ĐỐI KIÊNG THÂN (KHỈ)</b>
+            <p>Chi Thân trực xung Thái Tuế Dần bản mệnh: Tránh ký kết, không đi xa vội vã, giữ hòa khí tối đa.</p>
+          </div>
+        </div>
+        <div class="pillar-item">
+          <div class="p-badge">4</div>
+          <div class="p-body">
+            <b>Tiền &rarr; Tài Sản Cứng</b>
+            <p>Chuyển dòng tiền vào đất đai, bất động sản hoặc tri thức, bằng cấp. Tuyệt đối không lướt sóng, cho vay nóng.</p>
+          </div>
+        </div>
+        <div class="pillar-item">
+          <div class="p-badge">5</div>
+          <div class="p-body">
+            <b>Giữ ẤM & Đón NẮNG Sớm</b>
+            <p>Uống nước ấm, tắm nắng sáng 15 phút, vận động toát mồ hôi, bảo vệ gân và chân phải.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nên & Kiêng Mỗi Ngày -->
+    <div class="handbook-card">
+      <div class="h-tag">⚖️ Thường Nhật</div>
+      <div class="h-title">Quy Tắc Nên & Kiêng Hằng Ngày</div>
+      <div class="split-box">
+        <div class="do-col">
+          <div class="col-title">NÊN LÀM</div>
+          <ul class="col-list">
+            <li><b>Khung giờ vàng:</b> 7h–9h (Thìn) & 9h–11h (Tỵ)</li>
+            <li><b>Ngày cát:</b> Ngọ, Tỵ, Dần, Thìn, Tuất</li>
+            <li><b>Màu vượng:</b> Đỏ, cam, tím, vàng ấm, xanh lá</li>
+            <li><b>Hướng xuất hành:</b> Nam, Đông, Đông Nam</li>
+            <li><b>Quý nhân:</b> Tuổi Sửu, Mùi, Ngọ, Tuất, Mão</li>
+          </ul>
+        </div>
+        <div class="dont-col">
+          <div class="col-title">KIÊNG KỴ</div>
+          <ul class="col-list">
+            <li><b>Ngày Thân (Khỉ):</b> Nghỉ ký việc lớn</li>
+            <li><b>Màu kỵ:</b> Đen, xanh nước biển quá đậm</li>
+            <li><b>Ăn uống:</b> Đồ lạnh, nước đá; tránh thức khuya</li>
+            <li><b>Tài chính:</b> Vay mượn nóng, đầu tư mù quáng</li>
+            <li><b>Tâm trí:</b> Không quyết định khi đang giận</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pháp Trị Cự Môn Gia Đạo -->
+    <div class="handbook-card">
+      <div class="h-tag">🛡️ Bảo Vệ Gia Đình</div>
+      <div class="h-title">Pháp Trị Cự Môn Phu Thê</div>
+      <div class="law-item">
+        <b>1. Ngắt mạch 3 câu:</b> Khi Vợ bắt đầu bắt bẻ câu chữ (Cự Môn phát tác) &rarr; Dừng giải thích ngay, không đôi co bằng lời.
+      </div>
+      <div class="law-item">
+        <b>2. Cấm bàn việc lớn sau 21h:</b> Sau 21h là giờ Ám Thủy cực vượng; mọi bàn bạc dời sang sáng 7h–10h để giữ ấm hòa khí.
+      </div>
+      <div class="law-item">
+        <b>3. Lấy kết quả thay lời nói:</b> Việc chưa thành thì không kể nhiều với Vợ (Thái Dương Quan Lộc hóa giải Cự Môn).
+      </div>
+      <div class="law-item">
+        <b>4. Dùng Con gái (Quý Dậu) làm cầu nối:</b> Dành thời gian riêng Cha – Con, con gái là nhịp cầu êm dịu nhất trong tổ ấm.
+      </div>
+      <div class="law-item">
+        <b>5. Hướng sự sắc sảo của Vợ ra ngoài:</b> Nhờ vợ soi xét giấy tờ pháp lý, kiểm tra đối tác mua bán tài sản.
+      </div>
+    </div>
+
+    <p class="footer-note">Cẩm nang nội bộ dành riêng cho Chủ nhân Võ Tấn Đạt</p>
+  </main>
+
+  <!-- ================= VIEW 3: HÀNH TRÌNH (CHECKLIST) ================= -->
+  <main class="app-view" id="viewChecklist">
+    
+    <div class="check-progress-bar">
+      <div class="cp-head">
+        <span>Tiến Độ Thực Hành Cá Nhân</span>
+        <span id="cpPercent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="cpFill"></div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:6px">
+        <button class="btn-reset-check" onclick="resetChecklist()">Đặt lại tất cả</button>
+      </div>
+    </div>
+
+    <div class="ck-group">
+      <div class="ck-group-title">💼 Sự Nghiệp & Định Vị</div>
+      <label class="ck-item"><input type="checkbox" data-id="c1" onchange="saveCheck()"><span class="ck-text">Cập nhật CV với thành tích định lượng (quy mô, ngân sách)</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="c2" onchange="saveCheck()"><span class="ck-text">Soạn hồ sơ năng lực 1 trang vị trí Giám đốc Nhân sự</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="c3" onchange="saveCheck()"><span class="ck-text">Đề xuất sáng kiến ứng dụng AI trong quản trị nhân lực</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="c4" onchange="saveCheck()"><span class="ck-text">Lọc danh sách 10 đối tác chiến lược và Headhunter uy tín</span></label>
+    </div>
+
+    <div class="ck-group">
+      <div class="ck-group-title">🏡 Không Gian Sống & Bàn Làm Việc</div>
+      <label class="ck-item"><input type="checkbox" data-id="f1" onchange="saveCheck()"><span class="ck-text">Bàn làm việc: Đèn vàng ấm phía trước, cây xanh bên trái</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="f2" onchange="saveCheck()"><span class="ck-text">Lưng bàn làm việc tựa tường đặc, mặt nhìn hướng Đông/Nam</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="f3" onchange="saveCheck()"><span class="ck-text">Phòng ngủ: Bỏ gương đối diện giường, chăn rèm tông ấm</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="f4" onchange="saveCheck()"><span class="ck-text">Cửa chính Đông Bắc: Dọn sáng sủa, thông thoáng sinh khí</span></label>
+    </div>
+
+    <div class="ck-group">
+      <div class="ck-group-title">🧘 Sức Khỏe & Dưỡng Thể</div>
+      <label class="ck-item"><input type="checkbox" data-id="h1" onchange="saveCheck()"><span class="ck-text">Đón nắng sáng 15 phút trước 9h mỗi sáng</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="h2" onchange="saveCheck()"><span class="ck-text">Bỏ nước đá, uống nước ấm, giữ ấm chân & bụng</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="h3" onchange="saveCheck()"><span class="ck-text">Khởi động kỹ cổ chân và gân chân phải khi vận động</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="h4" onchange="saveCheck()"><span class="ck-text">Duy trì ngủ trước 23h để dưỡng gan thận</span></label>
+    </div>
+
+    <div class="ck-group">
+      <div class="ck-group-title">💰 Quản Trị Tài Chính An Vui</div>
+      <label class="ck-item"><input type="checkbox" data-id="m1" onchange="saveCheck()"><span class="ck-text">Bảo toàn quỹ khẩn cấp 6–12 tháng chi tiêu gia đình</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="m2" onchange="saveCheck()"><span class="ck-text">Tích lũy tài sản cứng (đất đai/nhà ở) thay vì giữ tiền mặt</span></label>
+      <label class="ck-item"><input type="checkbox" data-id="m3" onchange="saveCheck()"><span class="ck-text">Tuyệt đối không hùn vốn lướt sóng hoặc vay nóng</span></label>
+    </div>
+
+    <p class="footer-note">Dữ liệu được lưu trữ tự động và bảo mật trên thiết bị</p>
+  </main>
+
+  <!-- ================= VIEW 4: GHI CHÚ TÂM ĐẮC ================= -->
+  <main class="app-view" id="viewJournal">
+    <div class="journal-box">
+      <div class="j-head">
+        <div class="j-title">Nhật Ký & Kế Hoạch Riêng</div>
+        <div class="j-time" id="jTime">Đã lưu tự động</div>
+      </div>
+      <textarea class="j-textarea" id="jText" placeholder="Ghi lại các chiêm nghiệm, kế hoạch tài chính, bảo vệ gia đình hoặc bài học quý tại đây..." oninput="autoSaveJournal()"></textarea>
+      <div class="j-actions">
+        <div class="j-status" id="jStatus">● Sẵn sàng ghi chép</div>
+        <button class="btn-j-copy" onclick="copyJournal()">Sao Chép</button>
+      </div>
+    </div>
+    <p class="footer-note">Ghi chú lưu an toàn 100% trên điện thoại &middot; Không đưa lên mạng</p>
+  </main>
+
+</div>
+
+<!-- ================= BOTTOM NAVIGATION BAR ================= -->
+<nav class="bottom-nav">
+  <div class="nav-inner">
+    <button class="nav-item active" id="navHaircut" onclick="switchMainTab('haircut')">
+      <span class="nav-icon">✂️</span>
+      <span class="nav-label">Cắt Tóc</span>
+    </button>
+    <button class="nav-item" id="navHandbook" onclick="switchMainTab('handbook')">
+      <span class="nav-icon">📖</span>
+      <span class="nav-label">Sổ Tay</span>
+    </button>
+    <button class="nav-item" id="navChecklist" onclick="switchMainTab('checklist')">
+      <span class="nav-icon">✅</span>
+      <span class="nav-label">Hành Trình</span>
+    </button>
+    <button class="nav-item" id="navJournal" onclick="switchMainTab('journal')">
+      <span class="nav-icon">📝</span>
+      <span class="nav-label">Ghi Chú</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ================= MODAL CÀI ĐẶT APP LÊN ĐIỆN THOẠI ================= -->
+<div class="modal-backdrop" id="installModalBackdrop" onclick="hideInstallModal()"></div>
+<div class="modal" id="installModal">
+  <div class="modal-title">Cài Đặt Lên Điện Thoại</div>
+  <div class="modal-sub">Trở thành App độc lập, mở 1 chạm, hoạt động 100% offline</div>
+
+  <!-- Nút Cài Nhanh cho Android Chrome nếu hỗ trợ native prompt -->
+  <button class="btn-native-install" id="btnNativeInstall" onclick="triggerNativeInstall()">
+    📲 BẤM ĐỂ CÀI ĐẶT NGAY
+  </button>
+
+  <!-- Hướng dẫn iOS Safari -->
+  <div class="install-step">
+    <div class="is-num">1</div>
+    <div class="is-text">
+      Mở trang này trên <b>Safari</b> (iPhone) hoặc <b>Chrome</b> (Android).
+    </div>
+  </div>
+
+  <div class="install-step">
+    <div class="is-num">2</div>
+    <div class="is-text" id="step2Text">
+      <b>Trên iPhone:</b> Bấm biểu tượng <b>Chia sẻ</b> (hình vuông mũi tên lên ⎋) &rarr; chọn <b>"Thêm vào MH chính"</b> (Add to Home Screen ➕).<br><br>
+      <b>Trên Android:</b> Bấm menu <b>3 chấm ⋮</b> góc trên &rarr; chọn <b>"Cài đặt ứng dụng"</b> hoặc <b>"Thêm vào Màn hình chính"</b>.
+    </div>
+  </div>
+
+  <button class="btn-close-modal" onclick="hideInstallModal()">Đã Hiểu & Đóng</button>
+</div>
+
+<!-- ================= SLIDING DRAWER CHI TIẾT NGÀY ================= -->
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-handle"></div>
+  <div class="dw-head">
+    <div>
+      <div class="dw-date" id="dwDate">Ngày 04 Tháng 11, 2026</div>
+      <div class="dw-lunar" id="dwLunar">Ngày Nhâm Ngọ &middot; 26 tháng 9 Âm lịch</div>
+    </div>
+    <div class="dw-badge" id="dwBadge">5 SAO</div>
+  </div>
+
+  <div class="dw-stars-row">
+    <div class="dw-stars" id="dwStars">★★★★★</div>
+    <div class="dw-score" id="dwScore">(Điểm: 5.0 / 5.0)</div>
+  </div>
+
+  <div class="dw-card" id="dwHour">
+    <b>⏰ Khung giờ tốt nhất:</b><br>
+    Giờ Thìn (07:00–09:00) &middot; Giờ Tỵ (09:00–11:00)
+  </div>
+
+  <div class="dw-card" id="dwAnalysis">
+    <b>📊 Luận giải Bát Tự & Cổ thư:</b><br>
+    Ngày 26 Âm lịch là ngày đại cát tăng tiến của cải. Chi Ngọ là Hỏa khí cực thịnh, Dần Ngọ bán hợp Hỏa cục bổ trợ Dụng Thần Mậu Thổ.
+  </div>
+
+  <button class="dw-close-btn" onclick="closeDrawer()">Đóng</button>
+</div>
+
+<!-- ================= JAVASCRIPT ĐIỀU KHIỂN & LƯU TRỮ ================= -->
+<script>
+/* Thuật toán Âm Lịch Thiên Văn Hồ Ngọc Đức */
+function jdFromDate(d, m, y){
+  const a = Math.floor((14 - m)/12);
+  const y2 = y + 4800 - a;
+  const m2 = m + 12*a - 3;
+  return d + Math.floor((153*m2 + 2)/5) + 365*y2 + Math.floor(y2/4) - Math.floor(y2/100) + Math.floor(y2/400) - 32045;
+}
+function getNewMoonDay(k, timeZone){
+  const T = k/1236.85;
+  const T2 = T*T;
+  const T3 = T2*T;
+  const dr = Math.PI/180;
+  let Jd1 = 2415020.75933 + 29.53058868*k + 0.0001178*T2 - 0.000000155*T3;
+  Jd1 += 0.00033 * Math.sin((166.56 + 132.87*T - 0.009173*T2)*dr);
+  const M = 359.2242 + 29.10535608*k - 0.0000333*T2 - 0.00000347*T3;
+  const Mpr = 306.0253 + 385.81691806*k + 0.0107306*T2 + 0.00001236*T3;
+  const F = 21.2964 + 390.67050646*k - 0.0016528*T2 - 0.00000239*T3;
+  const C1 = (0.1734 - 0.000393*T)*Math.sin(M*dr) + 0.0021*Math.sin(2*M*dr);
+  const C2 = -0.4068*Math.sin(Mpr*dr) + 0.0161*Math.sin(2*Mpr*dr);
+  const C3 = -0.0004*Math.sin(3*Mpr*dr) + 0.0104*Math.sin(2*F*dr);
+  const C4 = -0.0051*Math.sin((M+Mpr)*dr) - 0.0074*Math.sin((M-Mpr)*dr);
+  const C5 = 0.0004*Math.sin((2*F+M)*dr) - 0.0004*Math.sin((2*F-M)*dr);
+  const C6 = -0.0006*Math.sin((2*F+Mpr)*dr) + 0.0010*Math.sin((2*F-Mpr)*dr);
+  const C7 = 0.0005*Math.sin((M + 2*Mpr)*dr);
+  return Math.floor(Jd1 + C1 + C2 + C3 + C4 + C5 + C6 + C7 + 0.5 + timeZone/24);
+}
+function getSunLongitude(jdn, timeZone){
+  const T = (jdn - 2451545.0 + 0.5 - timeZone/24)/36525;
+  const dr = Math.PI/180;
+  const L0 = 280.46645 + 36000.76983*T + 0.0003032*T*T;
+  const M = 357.52910 + 35999.05030*T - 0.0001559*T*T - 0.00000048*T*T*T;
+  const C = (1.914600 - 0.004817*T - 0.000014*T*T)*Math.sin(M*dr)
+          + (0.019993 - 0.000101*T)*Math.sin(2*M*dr)
+          + 0.000290*Math.sin(3*M*dr);
+  let theta = (L0 + C) % 360;
+  if(theta < 0) theta += 360;
+  return Math.floor(theta/30);
+}
+function convertSolar2Lunar(dd, mm, yy, timeZone=7){
+  const dayNumber = jdFromDate(dd, mm, yy);
+  const k = Math.floor((dayNumber - 2415021.07699)/29.530588853);
+  let monthStart = getNewMoonDay(k+1, timeZone);
+  if(monthStart > dayNumber) monthStart = getNewMoonDay(k, timeZone);
+  let a11 = getNewMoonDay(Math.floor((jdFromDate(1, 11, yy) - 2415021.07699)/29.530588853), timeZone);
+  if(getSunLongitude(a11, timeZone) >= 9) a11 = getNewMoonDay(Math.floor((jdFromDate(1, 11, yy) - 2415021.07699)/29.530588853)-1, timeZone);
+  const day = dayNumber - monthStart + 1;
+  const diff = Math.floor((monthStart - a11)/29);
+  let lunarMonth = (diff + 11) % 12;
+  if(lunarMonth === 0) lunarMonth = 12;
+  let lunarYear = yy;
+  if(lunarMonth >= 11 && mm < 3) lunarYear = yy - 1;
+  return {d: day, m: lunarMonth, y: lunarYear, jd: dayNumber};
+}
+
+const CAN = ["Giáp","Ất","Bính","Đinh","Mậu","Kỷ","Canh","Tân","Nhâm","Quý"];
+const CHI = ["Tý","Sửu","Dần","Mão","Thìn","Tỵ","Ngọ","Mùi","Thân","Dậu","Tuất","Hợi"];
+function dayGZ(jd){
+  return {c: (jd + 9) % 10, b: (jd + 1) % 12};
+}
+
+/* THUẬT TOÁN ĐÁNH GIÁ NGÀY CẮT TÓC (5 SAO -> 1 SAO) */
+function evaluateHaircutDay(d, m, y){
+  const L = convertSolar2Lunar(d, m, y);
+  const gz = dayGZ(L.jd);
+  const cName = CAN[gz.c];
+  const bName = CHI[gz.b];
+  const ld = L.d;
+
+  let stars = 3;
+  let baseScore = 3.0;
+  let reasons = [];
+  let isVeto = false;
+
+  // VETO CHECKS
+  if(bName === 'Thân'){
+    isVeto = true;
+    reasons.push("Chi Thân TRỰC XUNG Dần bản mệnh");
+  }
+  if(ld === 1){
+    isVeto = true;
+    reasons.push("Mùng 1 đầu tháng: Tránh hao tổn sinh khí khởi đầu");
+  }
+  if([5, 14, 23].includes(ld)){
+    isVeto = true;
+    reasons.push("Ngày Nguyệt Kỵ (5, 14, 23)");
+  }
+  if([3, 7].includes(ld)){
+    isVeto = true;
+    reasons.push("Ngày Tam Nương sát khí, hao khí");
+  }
+  if(ld === 25){
+    isVeto = true;
+    reasons.push("Ngày 25 ÂL: Tổn hại mắt và suy thần");
+  }
+
+  if(isVeto){
+    return {
+      stars: 1,
+      scoreVal: '1.0 / 5.0',
+      badge: 'TUYỆT ĐỐI KIÊNG',
+      badgeClass: 'status-red',
+      status: 'bad',
+      title: cName + ' ' + bName,
+      cName, bName,
+      lunar: L,
+      solarStr: `${String(d).padStart(2,'0')}/${String(m).padStart(2,'0')}`,
+      actionText: 'Tuyệt đối không nên cắt tóc hôm nay để bảo toàn nguyên khí.',
+      bestHour: 'Ngày xung kỵ, xin dời sang ngày hoàng đạo khác.',
+      reasons: reasons.join(' · '),
+      analysis: 'Ngày vướng xung sát với Bát Tự Mậu Dần hoặc tiết khí kiêng kỵ. Cắt tóc dễ gây mỏi mệt, trắc trở công việc.'
+    };
+  }
+
+  // NGỌC HẠP CÁT KHÍ
+  const GREAT_DAYS = {
+    4: "Cầu tài đắc lợi, tăng trưởng của cải",
+    8: "Trường thọ, thể trạng tráng kiện",
+    9: "Đón hỷ sự, quý nhân phù trợ",
+    10: "Thăng tiến chức vị, danh vang",
+    11: "Trí tuệ hanh thông, sáng suốt",
+    13: "Hưng vượng tài danh",
+    19: "Tăng thêm tuổi thọ và phúc đức",
+    22: "Tiến ích sinh tài, lộc phát",
+    26: "Đại cát tường, gia đạo hưng thịnh",
+    27: "Cát tường như ý, hoan hỷ"
+  };
+
+  if(GREAT_DAYS[ld]){
+    baseScore += 1.3;
+    reasons.push(GREAT_DAYS[ld]);
+  }
+
+  // DỤNG THẦN HỎA & HỶ THẦN MỘC
+  if(bName === 'Ngọ'){
+    baseScore += 1.2;
+    reasons.push("Chi Ngọ: Hỏa cực thịnh & Dần Ngọ bán hợp Hỏa cục bổ Dụng Thần");
+  } else if(bName === 'Tỵ'){
+    baseScore += 1.0;
+    reasons.push("Chi Tỵ: Hỏa khí ấm áp sinh Thổ");
+  } else if(bName === 'Dần' || bName === 'Mão'){
+    baseScore += 0.7;
+    reasons.push("Chi Dần/Mão: Hỷ Thần Mộc trợ thế lãnh đạo");
+  } else if(bName === 'Mùi'){
+    baseScore += 0.8;
+    reasons.push("Chi Mùi: Thiên Ất Quý Nhân che chở");
+  }
+
+  if(cName === 'Bính' || cName === 'Đinh'){
+    baseScore += 0.6;
+    reasons.push("Thiên Can Hỏa: Trợ Dụng Thần rực rỡ");
+  }
+
+  if([12, 16, 21, 28, 29, 30].includes(ld)){
+    baseScore -= 0.8;
+  }
+
+  if(baseScore >= 4.4){
+    stars = 5;
+  } else if(baseScore >= 3.6){
+    stars = 4;
+  } else if(baseScore >= 2.6){
+    stars = 3;
+  } else {
+    stars = 2;
+  }
+
+  const badgeMap = {
+    5: 'ĐẠI CÁT 5 SAO',
+    4: 'CÁT LỢI 4 SAO',
+    3: 'BÌNH HÒA 3 SAO',
+    2: 'HẠN CHẾ 2 SAO'
+  };
+  const actionMap = {
+    5: 'Thời điểm vàng để cắt tóc khai vận! Hút lộc tài và kích hoạt vận may mạnh mẽ.',
+    4: 'Rất nên cắt tóc. Khí tiết ôn hòa giúp tinh thần sảng khoái, gia tăng sinh khí.',
+    3: 'Ngày bình ổn, có thể cắt tỉa gọn gàng giữ vững phong độ.',
+    2: 'Nên hạn chế, dời sang ngày hoàng đạo để nạp vượng khí trọn vẹn.'
+  };
+
+  const hourMap = {
+    5: 'Giờ Thìn (07:00–09:00) &middot; Giờ Tỵ (09:00–11:00)',
+    4: 'Giờ Thìn (07:00–09:00) &middot; Giờ Ngọ (11:00–13:00)',
+    3: 'Khung giờ sáng từ 07:30 – 10:30',
+    2: 'Nên chọn ngày khác'
+  };
+
+  return {
+    stars,
+    scoreVal: Math.min(5, Math.max(1, Math.round(baseScore*10)/10)).toFixed(1) + ' / 5.0',
+    badge: badgeMap[stars],
+    badgeClass: stars >= 5 ? 'status-gold' : (stars === 4 ? 'status-green' : 'status-gold'),
+    status: stars >= 4 ? 'good' : 'med',
+    title: cName + ' ' + bName,
+    cName, bName,
+    lunar: L,
+    solarStr: `${String(d).padStart(2,'0')}/${String(m).padStart(2,'0')}`,
+    actionText: actionMap[stars],
+    bestHour: hourMap[stars],
+    reasons: reasons.join(' · '),
+    analysis: `Ngày ${cName} ${bName} (${ld}/${L.m} ÂL). ` + reasons.slice(0, 2).join('. ') + '.'
+  };
+}
+
+/* ================= TRẠNG THÁI APP & ĐIỀU HƯỚNG ================= */
+let now = new Date();
+let curYear = now.getFullYear();
+let curMonth = now.getMonth() + 1;
+let deferredPrompt = null;
+
+function init(){
+  renderHero();
+  renderGoldenStream(curYear, curMonth);
+  renderCalendar(curYear, curMonth);
+  loadChecklist();
+  loadJournal();
+  setupInstallPrompt();
+}
+
+/* Quản lý 4 Tab Chính */
+function switchMainTab(tab){
+  document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+
+  if(tab === 'haircut'){
+    document.getElementById('viewHaircut').classList.add('active');
+    document.getElementById('navHaircut').classList.add('active');
+  } else if(tab === 'handbook'){
+    document.getElementById('viewHandbook').classList.add('active');
+    document.getElementById('navHandbook').classList.add('active');
+  } else if(tab === 'checklist'){
+    document.getElementById('viewChecklist').classList.add('active');
+    document.getElementById('navChecklist').classList.add('active');
+  } else if(tab === 'journal'){
+    document.getElementById('viewJournal').classList.add('active');
+    document.getElementById('navJournal').classList.add('active');
+  }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* Quản lý Sub-Tab Cắt Tóc */
+function switchSubTab(sub){
+  const btnStream = document.getElementById('btnSubStream');
+  const btnCal = document.getElementById('btnSubCal');
+  const vStream = document.getElementById('subViewStream');
+  const vCal = document.getElementById('subViewCal');
+
+  if(sub === 'stream'){
+    btnStream.classList.add('active');
+    btnCal.classList.remove('active');
+    vStream.style.display = 'block';
+    vCal.style.display = 'none';
+  } else {
+    btnCal.classList.add('active');
+    btnStream.classList.remove('active');
+    vStream.style.display = 'none';
+    vCal.style.display = 'block';
+  }
+}
+
+/* Render Hero Hôm Nay */
+function renderHero(){
+  const d = now.getDate(), m = now.getMonth() + 1, y = now.getFullYear();
+  const res = evaluateHaircutDay(d, m, y);
+
+  document.getElementById('hDatePill').textContent = `${String(d).padStart(2,'0')}/${String(m).padStart(2,'0')} · ${res.lunar.d}/${res.lunar.m} ÂL`;
+  
+  const vEl = document.getElementById('hVerdict');
+  if(res.stars >= 5){
+    vEl.className = 'hero-status status-gold';
+    vEl.textContent = 'HÔM NAY ĐẠI CÁT';
+  } else if(res.stars === 4){
+    vEl.className = 'hero-status status-green';
+    vEl.textContent = 'HÔM NAY CÁT LỢI';
+  } else if(res.stars === 3){
+    vEl.className = 'hero-status status-gold';
+    vEl.textContent = 'HÔM NAY BÌNH HÒA';
+  } else {
+    vEl.className = 'hero-status status-red';
+    vEl.textContent = 'HÔM NAY NÊN KIÊNG';
+  }
+
+  const starStr = '★'.repeat(res.stars) + '☆'.repeat(5 - res.stars);
+  document.getElementById('hStars').textContent = starStr;
+  document.getElementById('hScoreBadge').textContent = res.scoreVal;
+  document.getElementById('hAction').textContent = res.actionText;
+  
+  if(res.stars >= 4){
+    document.getElementById('hHourBox').style.display = 'flex';
+    document.getElementById('hHourText').innerHTML = `Giờ Vàng: <b>${res.bestHour.split('&middot;')[0]}</b>`;
+  } else {
+    document.getElementById('hHourBox').style.display = 'none';
+  }
+
+  document.getElementById('heroCard').onclick = () => openDrawer(d, m, y, res);
+}
+
+/* Render Ngày Vàng Trong Tháng */
+function renderGoldenStream(year, month){
+  document.getElementById('lblStreamMonth').textContent = month;
+  const list = document.getElementById('streamList');
+  list.innerHTML = '';
+
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const topDays = [];
+
+  for(let d = 1; d <= daysInMonth; d++){
+    const res = evaluateHaircutDay(d, month, year);
+    if(res.stars >= 4){
+      topDays.push({d, month, year, res});
+    }
+  }
+
+  topDays.forEach(item => {
+    const isToday = (item.d === now.getDate() && item.month === now.getMonth()+1 && item.year === now.getFullYear());
+    const card = document.createElement('div');
+    card.className = 'gold-card' + (isToday ? ' is-today' : '');
+    
+    const starStr = '★'.repeat(item.res.stars);
+
+    card.innerHTML = `
+      <div class="gc-date">
+        <div class="gc-day">${String(item.d).padStart(2,'0')}</div>
+        <div class="gc-mo">Th${item.month}</div>
+      </div>
+      <div class="gc-info">
+        <div class="gc-title">
+          <span>Ngày ${item.res.title}</span>
+          <span class="gc-stars">${starStr}</span>
+        </div>
+        <div class="gc-sub">${item.res.lunar.d}/${item.res.lunar.m} ÂL &middot; ${item.res.badge}</div>
+        <div class="gc-hour">⏰ ${item.res.bestHour.split('&middot;')[0].replace('Giờ ','')}</div>
+      </div>
+      <div class="gc-arrow">›</div>
+    `;
+
+    card.onclick = () => openDrawer(item.d, item.month, item.year, item.res);
+    list.appendChild(card);
+  });
+}
+
+/* Render Lịch Tháng */
+function renderCalendar(year, month){
+  document.getElementById('calMonthLabel').textContent = `Tháng ${month} · ${year}`;
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  const firstDay = new Date(year, month - 1, 1).getDay();
+  const daysInMonth = new Date(year, month, 0).getDate();
+
+  for(let i = 0; i < firstDay; i++){
+    const empty = document.createElement('div');
+    empty.className = 'cal-cell empty';
+    grid.appendChild(empty);
+  }
+
+  for(let d = 1; d <= daysInMonth; d++){
+    const res = evaluateHaircutDay(d, month, year);
+    const isToday = (d === now.getDate() && month === now.getMonth()+1 && year === now.getFullYear());
+    
+    const cell = document.createElement('div');
+    cell.className = `cal-cell star-${res.stars}` + (isToday ? ' today' : '');
+    
+    cell.innerHTML = `
+      <div class="cell-sol">${d}</div>
+      <div class="cell-lun">${res.lunar.d}</div>
+      <div class="cell-dot"></div>
+    `;
+
+    cell.onclick = () => openDrawer(d, month, year, res);
+    grid.appendChild(cell);
+  }
+}
+
+function navMonth(delta){
+  curMonth += delta;
+  if(curMonth > 12){curMonth = 1; curYear++;}
+  if(curMonth < 1){curMonth = 12; curYear--;}
+  renderGoldenStream(curYear, curMonth);
+  renderCalendar(curYear, curMonth);
+}
+
+/* Drawer Xem Chi Tiết */
+function openDrawer(d, m, y, res){
+  document.getElementById('dwDate').textContent = `Ngày ${String(d).padStart(2,'0')} Tháng ${String(m).padStart(2,'0')}, ${y}`;
+  document.getElementById('dwLunar').textContent = `Ngày ${res.title} · ${res.lunar.d} tháng ${res.lunar.m} Âm lịch`;
+  
+  const badge = document.getElementById('dwBadge');
+  badge.textContent = res.badge;
+  if(res.stars >= 5){
+    badge.style.background = 'rgba(212,175,55,0.2)';
+    badge.style.color = '#f5e2ab';
+    badge.style.border = '1px solid rgba(212,175,55,0.4)';
+  } else if(res.stars === 4){
+    badge.style.background = 'rgba(52,199,89,0.15)';
+    badge.style.color = '#5ce38f';
+    badge.style.border = '1px solid rgba(52,199,89,0.3)';
+  } else if(res.stars === 1){
+    badge.style.background = 'rgba(255,69,58,0.15)';
+    badge.style.color = '#ff6961';
+    badge.style.border = '1px solid rgba(255,69,58,0.3)';
+  } else {
+    badge.style.background = 'rgba(255,255,255,0.1)';
+    badge.style.color = '#ddd';
+    badge.style.border = '1px solid rgba(255,255,255,0.15)';
+  }
+
+  const starStr = '★'.repeat(res.stars) + '☆'.repeat(5 - res.stars);
+  document.getElementById('dwStars').textContent = starStr;
+  document.getElementById('dwScore').textContent = `(${res.scoreVal})`;
+
+  document.getElementById('dwHour').innerHTML = `<b>⏰ Khung giờ tốt nhất:</b><br>${res.bestHour}`;
+  document.getElementById('dwAnalysis').innerHTML = `<b>📊 Luận giải phong thủy:</b><br>${res.analysis}`;
+
+  document.getElementById('drawerBackdrop').classList.add('active');
+  document.getElementById('drawer').classList.add('active');
+}
+
+function closeDrawer(){
+  document.getElementById('drawerBackdrop').classList.remove('active');
+  document.getElementById('drawer').classList.remove('active');
+}
+
+/* ================= CHECKLIST TIẾN ĐỘ ================= */
+function saveCheck(){
+  const data = {};
+  const boxes = document.querySelectorAll('.ck-item input');
+  let checkedCount = 0;
+  boxes.forEach(b => {
+    data[b.dataset.id] = b.checked;
+    if(b.checked) checkedCount++;
+  });
+  localStorage.setItem('dat_checklist_state', JSON.stringify(data));
+
+  const pct = Math.round((checkedCount / boxes.length) * 100);
+  document.getElementById('cpPercent').textContent = pct + '%';
+  document.getElementById('cpFill').style.width = pct + '%';
+}
+
+function loadChecklist(){
+  const saved = localStorage.getItem('dat_checklist_state');
+  if(saved){
+    try{
+      const data = JSON.parse(saved);
+      const boxes = document.querySelectorAll('.ck-item input');
+      let checkedCount = 0;
+      boxes.forEach(b => {
+        if(data[b.dataset.id]){
+          b.checked = true;
+          checkedCount++;
+        }
+      });
+      const pct = Math.round((checkedCount / boxes.length) * 100);
+      document.getElementById('cpPercent').textContent = pct + '%';
+      document.getElementById('cpFill').style.width = pct + '%';
+    }catch(e){}
+  }
+}
+
+function resetChecklist(){
+  if(confirm("Chủ nhân có muốn đặt lại toàn bộ danh mục thực hành?")){
+    document.querySelectorAll('.ck-item input').forEach(b => b.checked = false);
+    saveCheck();
+  }
+}
+
+/* ================= GHI CHÚ OFFLINE ================= */
+let saveTimer = null;
+function autoSaveJournal(){
+  const text = document.getElementById('jText').value;
+  document.getElementById('jStatus').textContent = '● Đang lưu...';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    localStorage.setItem('dat_private_notes', text);
+    const d = new Date();
+    const timeStr = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} ngày ${d.getDate()}/${d.getMonth()+1}`;
+    document.getElementById('jTime').textContent = `Đã lưu lúc ${timeStr}`;
+    document.getElementById('jStatus').textContent = '● Đã lưu an toàn';
+  }, 400);
+}
+
+function loadJournal(){
+  const text = localStorage.getItem('dat_private_notes');
+  if(text){
+    document.getElementById('jText').value = text;
+  }
+}
+
+function copyJournal(){
+  const text = document.getElementById('jText').value;
+  if(!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Đã sao chép nội dung ghi chú vào bộ nhớ tạm!");
+  });
+}
+
+/* ================= HỖ TRỢ CÀI ĐẶT PWA LÊN ĐIỆN THOẠI ================= */
+function setupInstallPrompt(){
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const btn = document.getElementById('btnNativeInstall');
+    if(btn) btn.style.display = 'block';
+  });
+}
+
+function showInstallModal(){
+  document.getElementById('installModalBackdrop').classList.add('active');
+  document.getElementById('installModal').classList.add('active');
+}
+
+function hideInstallModal(){
+  document.getElementById('installModalBackdrop').classList.remove('active');
+  document.getElementById('installModal').classList.remove('active');
+}
+
+function triggerNativeInstall(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      hideInstallModal();
+    });
+  }
+}
+
+init();
+
+/* ĐĂNG KÝ SERVICE WORKER CHUẨN PWA */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('SW active:', reg.scope))
+      .catch(err => console.log('SW error:', err));
+  });
+}
+
+</script>
+</body>
+</html>

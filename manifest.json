@@ -1,0 +1,25 @@
+{
+  "name": "Khai Vận & Sổ Tay Bát Tự — Võ Tấn Đạt",
+  "short_name": "Khai Vận",
+  "description": "Lịch Cắt Tóc Khai Vận & Sổ Tay Bát Tự Cá Nhân Hóa Dành Riêng Cho Võ Tấn Đạt",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#08080b",
+  "theme_color": "#08080b",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
