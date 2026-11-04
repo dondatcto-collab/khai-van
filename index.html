@@ -19,7 +19,7 @@
 <!-- Apple Touch Icon Data URI -->
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='115' fill='%2308080b'/%3E%3Ccircle cx='256' cy='256' r='190' fill='none' stroke='%23d4af37' stroke-width='14'/%3E%3Cpolygon points='256,120 295,200 384,213 320,275 335,364 256,322 177,364 192,275 128,213 217,200' fill='%23e8cfa1'/%3E%3C/svg%3E">
 
-<title>Khai Vận & Sổ Tay Bát Tự — Võ Tấn Đạt</title>
+<title>La Bàn Vận Mệnh & Sổ Tay — Võ Tấn Đạt</title>
 <style>
 :root{
   --bg: #08080b;
@@ -33,6 +33,7 @@
   --gold-champagne: #e8cfa1;
   --gold-glow: rgba(212, 175, 55, 0.25);
   --emerald: #34c759;
+  --amber: #f5b942;
   --ruby: #ff453a;
   
   --text-primary: #f5f5f7;
@@ -58,7 +59,7 @@ html,body{
 }
 body{
   padding-top:calc(var(--safe-top) + 10px);
-  padding-bottom:calc(var(--safe-bot) + 82px);
+  padding-bottom:calc(var(--safe-bot) + 84px);
   background:
     radial-gradient(600px 300px at 50% -10%, rgba(212, 175, 55, 0.12), transparent 75%),
     radial-gradient(400px 400px at 80% 90%, rgba(52, 199, 89, 0.05), transparent 70%),
@@ -123,7 +124,7 @@ body{
 .app-view.active{display:block;animation:fadeIn .25s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
-/* ================= SECTION 1: LỊCH CẮT TÓC ================= */
+/* ================= HERO CARDS ================= */
 .hero{
   background:linear-gradient(170deg, #181722 0%, #101016 100%);
   border:1px solid var(--border-gold);
@@ -179,7 +180,7 @@ body{
 .hero-main{margin-bottom:12px}
 .hero-status{
   font-family:var(--font-serif);
-  font-size:23px;
+  font-size:22px;
   font-weight:800;
   line-height:1.2;
   margin-bottom:4px;
@@ -190,6 +191,7 @@ body{
   -webkit-text-fill-color:transparent;
 }
 .status-green{color:#5ce38f}
+.status-amber{color:#f5cd73}
 .status-red{color:#ff6961}
 
 .hero-stars-row{
@@ -197,11 +199,12 @@ body{
   align-items:center;
   gap:8px;
   margin-bottom:8px;
+  flex-wrap:wrap;
 }
 .hero-stars{
   color:var(--gold);
   font-size:15px;
-  letter-spacing:3px;
+  letter-spacing:2px;
 }
 .hero-score-badge{
   font-size:11px;
@@ -214,7 +217,7 @@ body{
 }
 
 .hero-action{
-  font-size:14px;
+  font-size:13.5px;
   color:var(--text-primary);
   line-height:1.45;
   margin-bottom:12px;
@@ -240,6 +243,70 @@ body{
 .hh-right{
   font-size:11.5px;
   color:var(--text-secondary);
+}
+
+/* Season / Tiết Khí Progress Card */
+.tiet-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px 14px;
+  margin-bottom:14px;
+}
+.tc-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:12.5px;
+  margin-bottom:6px;
+}
+.tc-title{font-weight:700;color:var(--gold-champagne)}
+.tc-sub{font-size:11.5px;color:var(--text-secondary)}
+.tc-bar{
+  height:5px;
+  background:rgba(255,255,255,0.07);
+  border-radius:6px;
+  overflow:hidden;
+  margin-bottom:6px;
+}
+.tc-fill{
+  height:100%;
+  background:linear-gradient(90deg, var(--gold), var(--ruby));
+  width:0%;
+}
+.tc-foot{
+  font-size:11.5px;
+  color:var(--text-secondary);
+  display:flex;
+  justify-content:space-between;
+}
+
+/* Filter Chips */
+.filter-row{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  padding-bottom:4px;
+  margin-bottom:12px;
+  scrollbar-width:none;
+}
+.filter-row::-webkit-scrollbar{display:none}
+.f-chip{
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--text-secondary);
+  font-size:12px;
+  font-weight:600;
+  padding:6px 12px;
+  border-radius:16px;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:.15s;
+}
+.f-chip.active{
+  background:rgba(212,175,55,0.16);
+  border-color:var(--gold);
+  color:var(--gold-champagne);
 }
 
 /* Sub-switch: Ngày vàng vs Lịch tháng */
@@ -301,6 +368,10 @@ body{
   padding:2px 7px;
   border-bottom-left-radius:8px;
 }
+.gold-card.is-veto{
+  border-color:rgba(255,69,58,0.35);
+  background:linear-gradient(135deg, rgba(255,69,58,0.06), rgba(18,18,23,0.9));
+}
 .gc-date{
   display:flex;
   flex-direction:column;
@@ -314,9 +385,9 @@ body{
 }
 .gc-day{font-size:19px;font-weight:800;color:#fff;line-height:1}
 .gc-mo{font-size:9.5px;color:var(--text-secondary);margin-top:2px}
-.gc-title{font-size:14px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:6px}
+.gc-title{font-size:14px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .gc-stars{color:var(--gold);font-size:11px;letter-spacing:1px}
-.gc-sub{font-size:11.5px;color:var(--text-secondary)}
+.gc-sub{font-size:11.5px;color:var(--text-secondary);margin-top:1px}
 .gc-hour{font-size:11px;color:var(--gold-champagne);margin-top:2px}
 .gc-arrow{color:var(--text-tertiary);font-size:15px}
 
@@ -386,7 +457,7 @@ body{
 .star-4 .cell-dot{opacity:1;background:var(--emerald)}
 .star-1 .cell-sol{color:var(--text-tertiary)}
 
-/* ================= SECTION 2: SỔ TAY BÁT TỰ ================= */
+/* ================= SECTION: SỔ TAY BÁT TỰ ================= */
 .handbook-card{
   background:var(--surface);
   border:1px solid var(--border);
@@ -394,6 +465,10 @@ body{
   padding:16px 16px;
   margin-bottom:12px;
   position:relative;
+}
+.handbook-card.gold-border{
+  border-color:var(--border-gold);
+  background:linear-gradient(165deg, #171520, #111116);
 }
 .h-tag{
   font-size:11px;
@@ -407,7 +482,7 @@ body{
   gap:6px;
 }
 .h-title{
-  font-size:17px;
+  font-size:16.5px;
   font-weight:700;
   color:#fff;
   font-family:var(--font-serif);
@@ -478,7 +553,7 @@ body{
 }
 .law-item b{color:var(--gold-champagne)}
 
-/* ================= SECTION 3: HÀNH TRÌNH (CHECKLIST) ================= */
+/* ================= SECTION: HÀNH TRÌNH & GHI CHÚ ================= */
 .check-progress-bar{
   background:var(--surface);
   border:1px solid var(--border);
@@ -560,13 +635,13 @@ body{
   text-decoration:line-through;
 }
 
-/* ================= SECTION 4: GHI CHÚ (JOURNAL) ================= */
 .journal-box{
   background:var(--surface);
   border:1px solid var(--border-gold);
   border-radius:18px;
   padding:16px;
   box-shadow:0 8px 30px rgba(0,0,0,0.5);
+  margin-bottom:12px;
 }
 .j-head{
   display:flex;
@@ -586,7 +661,7 @@ body{
 }
 .j-textarea{
   width:100%;
-  height:240px;
+  height:230px;
   background:rgba(0,0,0,0.35);
   border:1px solid var(--border);
   border-radius:12px;
@@ -622,7 +697,7 @@ body{
   bottom:0;
   left:0;
   right:0;
-  background:rgba(18, 18, 24, 0.88);
+  background:rgba(18, 18, 24, 0.9);
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
   border-top:1px solid rgba(255,255,255,0.08);
@@ -850,8 +925,8 @@ body{
   <!-- TOP HEADER -->
   <header class="header">
     <div class="brand">
-      <div class="brand-title">Khai Vận &middot; Võ Tấn Đạt</div>
-      <div class="brand-sub">Sổ Tay Bát Tự &middot; Dụng Thần Hỏa</div>
+      <div class="brand-title">La Bàn Khai Vận &middot; Võ Tấn Đạt</div>
+      <div class="brand-sub">Hệ Điều Hành Bát Tự Mậu Dần &middot; Dụng Hỏa</div>
     </div>
     <div class="header-actions">
       <button class="btn-install" onclick="showInstallModal()">
@@ -860,14 +935,71 @@ body{
     </div>
   </header>
 
-  <!-- ================= VIEW 1: LỊCH CẮT TÓC ================= -->
-  <main class="app-view active" id="viewHaircut">
+  <!-- ================= VIEW 1: LA BÀN VẬN KHÍ HẰNG NGÀY ================= -->
+  <main class="app-view active" id="viewCompass">
     
-    <!-- Hero Card Hôm Nay -->
+    <!-- Hero Card Vận Khí Hôm Nay -->
+    <section class="hero" id="compassHero">
+      <div class="hero-glow"></div>
+      <div class="hero-top">
+        <div class="hero-label">Chỉ Báo Vận Mệnh Hôm Nay</div>
+        <div class="hero-date-pill" id="cDatePill">04/11 &middot; 26/09 ÂL</div>
+      </div>
+      
+      <div class="hero-main">
+        <div class="hero-status status-gold" id="cVerdict">🟢 HÀNH &middot; ĐẠI CÁT</div>
+        <div class="hero-stars-row">
+          <div class="hero-stars" id="cStars">★★★★★</div>
+          <div class="hero-score-badge" id="cScoreBadge">Tổng: 4.8 / 5.0</div>
+          <div class="hero-score-badge" id="cGanzhiBadge">Ngày Nhâm Ngọ</div>
+        </div>
+        <div class="hero-action" id="cAction">Hỏa khí cực vượng (Dần–Ngọ bán hợp Hỏa). Rất tốt để quyết đoán, đàm phán, chốt việc quan trọng trước 11h sáng.</div>
+      </div>
+
+      <div class="hero-hour-box">
+        <div class="hh-left">
+          <span>⏰</span>
+          <span id="cHourText">Giờ Vàng: <b>Thìn (7–9h), Tỵ (9–11h)</b></span>
+        </div>
+        <div class="hh-right" id="cColorText">Màu: Đỏ, Cam, Vàng ấm</div>
+      </div>
+    </section>
+
+    <!-- Thẻ Tiến Độ Tiết Khí -->
+    <div class="tiet-card">
+      <div class="tc-top">
+        <span class="tc-title" id="tietTitle">Tháng Mậu Tuất (Hỏa Khố · HÀNH)</span>
+        <span class="tc-sub" id="tietCount">Ngày 28 / 30</span>
+      </div>
+      <div class="tc-bar"><div class="tc-fill" id="tietFill"></div></div>
+      <div class="tc-foot">
+        <span id="tietNext">Sắp chuyển sang tháng Kỷ Hợi (TÀNG)</span>
+        <span style="color:var(--gold-champagne);font-weight:600">Giữ ấm &middot; Khoá tiền</span>
+      </div>
+    </div>
+
+    <!-- Bộ Lọc 30 Ngày Tới -->
+    <div class="filter-row">
+      <button class="f-chip active" onclick="filter30('all', this)">Tất cả 30 ngày</button>
+      <button class="f-chip" onclick="filter30('go', this)">🟢 Ngày HÀNH (Tốt)</button>
+      <button class="f-chip" onclick="filter30('wealth', this)">💰 Ngày Tài Lộc</button>
+      <button class="f-chip" onclick="filter30('veto', this)">🔴 Ngày Kiêng (Thân/Xung)</button>
+    </div>
+
+    <!-- Danh Sách 30 Ngày Tới -->
+    <div class="stream-list" id="compass30List"></div>
+
+    <p class="footer-note">Đã nạp 3 Luật Hiệu Chỉnh từ 5 mốc đời Chủ nhân Võ Tấn Đạt</p>
+  </main>
+
+  <!-- ================= VIEW 2: LỊCH CẮT TÓC ================= -->
+  <main class="app-view" id="viewHaircut">
+    
+    <!-- Hero Card Cắt Tóc Hôm Nay -->
     <section class="hero" id="heroCard">
       <div class="hero-glow"></div>
       <div class="hero-top">
-        <div class="hero-label">Hôm nay</div>
+        <div class="hero-label">Cắt Tóc Khai Vận Hôm Nay</div>
         <div class="hero-date-pill" id="hDatePill">04/11 &middot; 26/09 ÂL</div>
       </div>
       
@@ -924,9 +1056,27 @@ body{
     <p class="footer-note">Đo ni đóng giày cho Bát Tự Mậu Dần &middot; Kiêng Thân</p>
   </main>
 
-  <!-- ================= VIEW 2: SỔ TAY BÁT TỰ ================= -->
+  <!-- ================= VIEW 3: SỔ TAY BÁT TỰ & CHIẾN LƯỢC ================= -->
   <main class="app-view" id="viewHandbook">
     
+    <!-- Kịch Bản Khóa Trần 100 Triệu (Mũi Nhọn Thực Chiến) -->
+    <div class="handbook-card gold-border">
+      <div class="h-tag">🛡️ Cẩm Nang Thực Chiến T6 & T7 (06–07/11)</div>
+      <div class="h-title">Kịch Bản "Trao Kiếm Cho Vợ" — Khóa Trần 100Tr</div>
+      <div class="law-item">
+        <b>1. Thế cờ Đỉnh Cao của Chủ nhân:</b> Chiều Thứ 7 (07/11 - đúng ngày Lập Đông mở màn tháng Hợi Thủy Kiếp Tài), Chủ nhân <b>KHÔNG tham gia</b> buổi giao tiền là nước cờ thượng thừa! Vừa tránh tiếp xúc trực tiếp với khí Hao Tài/Oán khí, vừa giữ vị thế "Thượng phương bảo kiếm" đứng trên cuộc chơi.
+      </div>
+      <div class="law-item">
+        <b>2. Thời điểm đưa tiền cho Vợ:</b> Thứ 6 (06/11) là ngày <b>Giáp Thân (Khỉ xung Hổ)</b>. Tốt nhất Chủ nhân chuyển/đưa tiền cho Vợ từ <b>Thứ 5 (05/11 - Ngày Quý Mùi 5★, Mậu Quý hợp Chính Tài)</b>; hoặc nếu đưa sáng Thứ 6 thì chốt đúng <b>Giờ Thìn (07:00–09:00)</b> hoặc <b>Giờ Tỵ (09:00–11:00)</b>.
+      </div>
+      <div class="law-item">
+        <b>3. Ba câu "Trao Kiếm" dặn Vợ lúc đưa tiền (Hướng Cự Môn của vợ ra ngoài):</b><br>
+        • <i>"Anh vì thương em và kính mẹ nên duyệt 100 triệu này. Chiều thứ 7 em với các dì đại diện trao tận tay, anh không có mặt để bên cậu mợ hiểu em mới là người cầm chìa khóa trong nhà."</i><br>
+        • <i>"Em nói rõ trước mặt các dì và cậu mợ: Đây là khoản quỹ dự phòng cuối cùng vợ chồng mình trích ra cứu bé. Từ nay về sau, bất kỳ khoản vay phát sinh nào nữa vợ chồng mình đều không thể gánh thêm."</i><br>
+        • <i>"Em giữ toàn bộ sao kê chuyển trả trực tiếp vào ngân hàng/app dưới sự chứng kiến của các dì, tuyệt đối không đưa tiền mặt trôi nổi."</i>
+      </div>
+    </div>
+
     <!-- 5 Trụ Cột Bản Mệnh -->
     <div class="handbook-card">
       <div class="h-tag">💎 Cốt Lõi Vận Mệnh</div>
@@ -942,15 +1092,15 @@ body{
         <div class="pillar-item">
           <div class="p-badge">2</div>
           <div class="p-body">
-            <b>Gặp THỦY thì TÀNG</b>
-            <p>Tháng 11, 12 & 1 DL (Hợi, Tý, Sửu): Thu liễm, bồi dưỡng nội lực, học tập, không hùn vốn mạo hiểm.</p>
+            <b>Gặp THỦY thì TÀNG (07/11/2026 &rarr; 04/02/2027)</b>
+            <p>Tháng 11, 12 & 1 DL (Hợi, Tý, Sửu): Thu liễm, bồi dưỡng nội lực, học tập, khóa chặt túi tiền, không hùn vốn hay cho vay thêm.</p>
           </div>
         </div>
         <div class="pillar-item">
           <div class="p-badge">3</div>
           <div class="p-body">
-            <b>TUYỆT ĐỐI KIÊNG THÂN (KHỈ)</b>
-            <p>Chi Thân trực xung Thái Tuế Dần bản mệnh: Tránh ký kết, không đi xa vội vã, giữ hòa khí tối đa.</p>
+            <b>TUYỆT ĐỐI KIÊNG THÂN & GIÁP SÁT XUNG</b>
+            <p>Ngày Thân trực xung Dần bản mệnh; ngày Giáp Thân/Giáp Tuất cẩn trọng đi lại và bảo vệ gân cổ chân phải.</p>
           </div>
         </div>
         <div class="pillar-item">
@@ -970,38 +1120,10 @@ body{
       </div>
     </div>
 
-    <!-- Nên & Kiêng Mỗi Ngày -->
-    <div class="handbook-card">
-      <div class="h-tag">⚖️ Thường Nhật</div>
-      <div class="h-title">Quy Tắc Nên & Kiêng Hằng Ngày</div>
-      <div class="split-box">
-        <div class="do-col">
-          <div class="col-title">NÊN LÀM</div>
-          <ul class="col-list">
-            <li><b>Khung giờ vàng:</b> 7h–9h (Thìn) & 9h–11h (Tỵ)</li>
-            <li><b>Ngày cát:</b> Ngọ, Tỵ, Dần, Thìn, Tuất</li>
-            <li><b>Màu vượng:</b> Đỏ, cam, tím, vàng ấm, xanh lá</li>
-            <li><b>Hướng xuất hành:</b> Nam, Đông, Đông Nam</li>
-            <li><b>Quý nhân:</b> Tuổi Sửu, Mùi, Ngọ, Tuất, Mão</li>
-          </ul>
-        </div>
-        <div class="dont-col">
-          <div class="col-title">KIÊNG KỴ</div>
-          <ul class="col-list">
-            <li><b>Ngày Thân (Khỉ):</b> Nghỉ ký việc lớn</li>
-            <li><b>Màu kỵ:</b> Đen, xanh nước biển quá đậm</li>
-            <li><b>Ăn uống:</b> Đồ lạnh, nước đá; tránh thức khuya</li>
-            <li><b>Tài chính:</b> Vay mượn nóng, đầu tư mù quáng</li>
-            <li><b>Tâm trí:</b> Không quyết định khi đang giận</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
     <!-- Pháp Trị Cự Môn Gia Đạo -->
     <div class="handbook-card">
       <div class="h-tag">🛡️ Bảo Vệ Gia Đình</div>
-      <div class="h-title">Pháp Trị Cự Môn Phu Thê</div>
+      <div class="h-title">5 Pháp Trị Cự Môn Phu Thê</div>
       <div class="law-item">
         <b>1. Ngắt mạch 3 câu:</b> Khi Vợ bắt đầu bắt bẻ câu chữ (Cự Môn phát tác) &rarr; Dừng giải thích ngay, không đôi co bằng lời.
       </div>
@@ -1015,77 +1137,103 @@ body{
         <b>4. Dùng Con gái (Quý Dậu) làm cầu nối:</b> Dành thời gian riêng Cha – Con, con gái là nhịp cầu êm dịu nhất trong tổ ấm.
       </div>
       <div class="law-item">
-        <b>5. Hướng sự sắc sảo của Vợ ra ngoài:</b> Nhờ vợ soi xét giấy tờ pháp lý, kiểm tra đối tác mua bán tài sản.
+        <b>5. Hướng sự sắc sảo của Vợ ra ngoài:</b> Giao vợ giám sát pháp lý, giấy tờ, canh giữ kỷ luật tài chính với bên ngoài.
+      </div>
+    </div>
+
+    <!-- Lộ Trình Sự Nghiệp 2026 - 2027 -->
+    <div class="handbook-card">
+      <div class="h-tag">🚀 Đại Vận Đinh Mão (2026–2036)</div>
+      <div class="h-title">Lộ Trình Thăng Tiến & Đổi Việc 2026–2027</div>
+      <div class="law-item">
+        <b>① 07/11/2026 &rarr; 04/02/2027 (Hợi–Tý–Sửu · TÀNG):</b> Rèn vũ khí ngầm (CV định lượng, Đề án AI Nhân sự), phỏng vấn thăm dò kín, chưa rời vị trí.
+      </div>
+      <div class="law-item">
+        <b>② 06/03 &rarr; 04/04/2027 (Tháng Quý Mão · HÀNH):</b> Có tín hiệu đề bạt nội bộ rõ ràng &rarr; Nhận. Chưa có &rarr; Kích hoạt phương án bên ngoài.
+      </div>
+      <div class="law-item">
+        <b>③ 06/05 &rarr; 06/08/2027 (Tỵ–Ngọ–Mùi · ⭐ CỬA SỔ VÀNG):</b> Điểm rơi Hỏa cực thịnh! Chốt offer Giám đốc/Trưởng khối Nhân sự, nâng trần thu nhập.
       </div>
     </div>
 
     <p class="footer-note">Cẩm nang nội bộ dành riêng cho Chủ nhân Võ Tấn Đạt</p>
   </main>
 
-  <!-- ================= VIEW 3: HÀNH TRÌNH (CHECKLIST) ================= -->
-  <main class="app-view" id="viewChecklist">
+  <!-- ================= VIEW 4: CÁ NHÂN (HÀNH TRÌNH & GHI CHÚ) ================= -->
+  <main class="app-view" id="viewPersonal">
     
-    <div class="check-progress-bar">
-      <div class="cp-head">
-        <span>Tiến Độ Thực Hành Cá Nhân</span>
-        <span id="cpPercent">0%</span>
+    <nav class="sub-tabs">
+      <button class="sub-tab-btn active" id="btnSubCheck" onclick="switchPersonalTab('check')">
+        ✅ Hành Trình Thực Hành
+      </button>
+      <button class="sub-tab-btn" id="btnSubNote" onclick="switchPersonalTab('note')">
+        📝 Nhật Ký Bảo Mật
+      </button>
+    </nav>
+
+    <!-- Sub-view Checklist -->
+    <div id="subViewCheck">
+      <div class="check-progress-bar">
+        <div class="cp-head">
+          <span>Tiến Độ Thực Hành Cá Nhân</span>
+          <span id="cpPercent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="cpFill"></div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:6px">
+          <button class="btn-reset-check" onclick="resetChecklist()">Đặt lại tất cả</button>
+        </div>
       </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="cpFill"></div>
+
+      <div class="ck-group">
+        <div class="ck-group-title">🛡️ Khóa Vòng Bảo Vệ 100 Triệu (Tuần Này)</div>
+        <label class="ck-item"><input type="checkbox" data-id="s1" onchange="saveCheck()"><span class="ck-text">Chuyển/giao 100tr cho Vợ vào giờ Hoàng Đạo (T5 Quý Mùi hoặc 7–9h sáng T6)</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="s2" onchange="saveCheck()"><span class="ck-text">Dặn Vợ 3 nguyên tắc khóa trần trước khi Vợ & các Dì đi giao chiều Thứ 7</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="s3" onchange="saveCheck()"><span class="ck-text">Đứng ngoài buổi giao tiền chiều Thứ 7 (Lập Đông) để giữ vị thế & tránh khí Kiếp Tài</span></label>
       </div>
-      <div style="display:flex;justify-content:flex-end;margin-top:6px">
-        <button class="btn-reset-check" onclick="resetChecklist()">Đặt lại tất cả</button>
+
+      <div class="ck-group">
+        <div class="ck-group-title">💼 Sự Nghiệp & Định Vị (Chiến dịch Mùa Đông)</div>
+        <label class="ck-item"><input type="checkbox" data-id="c1" onchange="saveCheck()"><span class="ck-text">Cập nhật CV với thành tích định lượng (quy mô, ngân sách)</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="c2" onchange="saveCheck()"><span class="ck-text">Soạn hồ sơ năng lực 1 trang vị trí Giám đốc Nhân sự</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="c3" onchange="saveCheck()"><span class="ck-text">Đề xuất sáng kiến ứng dụng AI trong quản trị nhân lực</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="c4" onchange="saveCheck()"><span class="ck-text">Lọc danh sách 10 đối tác chiến lược và Headhunter uy tín</span></label>
       </div>
-    </div>
 
-    <div class="ck-group">
-      <div class="ck-group-title">💼 Sự Nghiệp & Định Vị</div>
-      <label class="ck-item"><input type="checkbox" data-id="c1" onchange="saveCheck()"><span class="ck-text">Cập nhật CV với thành tích định lượng (quy mô, ngân sách)</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="c2" onchange="saveCheck()"><span class="ck-text">Soạn hồ sơ năng lực 1 trang vị trí Giám đốc Nhân sự</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="c3" onchange="saveCheck()"><span class="ck-text">Đề xuất sáng kiến ứng dụng AI trong quản trị nhân lực</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="c4" onchange="saveCheck()"><span class="ck-text">Lọc danh sách 10 đối tác chiến lược và Headhunter uy tín</span></label>
-    </div>
-
-    <div class="ck-group">
-      <div class="ck-group-title">🏡 Không Gian Sống & Bàn Làm Việc</div>
-      <label class="ck-item"><input type="checkbox" data-id="f1" onchange="saveCheck()"><span class="ck-text">Bàn làm việc: Đèn vàng ấm phía trước, cây xanh bên trái</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="f2" onchange="saveCheck()"><span class="ck-text">Lưng bàn làm việc tựa tường đặc, mặt nhìn hướng Đông/Nam</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="f3" onchange="saveCheck()"><span class="ck-text">Phòng ngủ: Bỏ gương đối diện giường, chăn rèm tông ấm</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="f4" onchange="saveCheck()"><span class="ck-text">Cửa chính Đông Bắc: Dọn sáng sủa, thông thoáng sinh khí</span></label>
-    </div>
-
-    <div class="ck-group">
-      <div class="ck-group-title">🧘 Sức Khỏe & Dưỡng Thể</div>
-      <label class="ck-item"><input type="checkbox" data-id="h1" onchange="saveCheck()"><span class="ck-text">Đón nắng sáng 15 phút trước 9h mỗi sáng</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="h2" onchange="saveCheck()"><span class="ck-text">Bỏ nước đá, uống nước ấm, giữ ấm chân & bụng</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="h3" onchange="saveCheck()"><span class="ck-text">Khởi động kỹ cổ chân và gân chân phải khi vận động</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="h4" onchange="saveCheck()"><span class="ck-text">Duy trì ngủ trước 23h để dưỡng gan thận</span></label>
-    </div>
-
-    <div class="ck-group">
-      <div class="ck-group-title">💰 Quản Trị Tài Chính An Vui</div>
-      <label class="ck-item"><input type="checkbox" data-id="m1" onchange="saveCheck()"><span class="ck-text">Bảo toàn quỹ khẩn cấp 6–12 tháng chi tiêu gia đình</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="m2" onchange="saveCheck()"><span class="ck-text">Tích lũy tài sản cứng (đất đai/nhà ở) thay vì giữ tiền mặt</span></label>
-      <label class="ck-item"><input type="checkbox" data-id="m3" onchange="saveCheck()"><span class="ck-text">Tuyệt đối không hùn vốn lướt sóng hoặc vay nóng</span></label>
-    </div>
-
-    <p class="footer-note">Dữ liệu được lưu trữ tự động và bảo mật trên thiết bị</p>
-  </main>
-
-  <!-- ================= VIEW 4: GHI CHÚ TÂM ĐẮC ================= -->
-  <main class="app-view" id="viewJournal">
-    <div class="journal-box">
-      <div class="j-head">
-        <div class="j-title">Nhật Ký & Kế Hoạch Riêng</div>
-        <div class="j-time" id="jTime">Đã lưu tự động</div>
+      <div class="ck-group">
+        <div class="ck-group-title">🏡 Không Gian Sống & Bàn Làm Việc</div>
+        <label class="ck-item"><input type="checkbox" data-id="f1" onchange="saveCheck()"><span class="ck-text">Bàn làm việc: Đèn vàng ấm phía trước, cây xanh bên trái</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="f2" onchange="saveCheck()"><span class="ck-text">Lưng bàn làm việc tựa tường đặc, mặt nhìn hướng Đông/Nam</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="f3" onchange="saveCheck()"><span class="ck-text">Phòng ngủ: Bỏ gương đối diện giường, chăn rèm tông ấm</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="f4" onchange="saveCheck()"><span class="ck-text">Cửa chính Đông Bắc: Dọn sáng sủa, thông thoáng sinh khí</span></label>
       </div>
-      <textarea class="j-textarea" id="jText" placeholder="Ghi lại các chiêm nghiệm, kế hoạch tài chính, bảo vệ gia đình hoặc bài học quý tại đây..." oninput="autoSaveJournal()"></textarea>
-      <div class="j-actions">
-        <div class="j-status" id="jStatus">● Sẵn sàng ghi chép</div>
-        <button class="btn-j-copy" onclick="copyJournal()">Sao Chép</button>
+
+      <div class="ck-group">
+        <div class="ck-group-title">🧘 Sức Khỏe & Dưỡng Thể Mùa Đông</div>
+        <label class="ck-item"><input type="checkbox" data-id="h1" onchange="saveCheck()"><span class="ck-text">Đón nắng sáng 15 phút trước 9h mỗi sáng</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="h2" onchange="saveCheck()"><span class="ck-text">Bỏ nước đá, uống nước ấm, giữ ấm chân & bụng</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="h3" onchange="saveCheck()"><span class="ck-text">Khởi động kỹ cổ chân và gân chân phải khi vận động</span></label>
+        <label class="ck-item"><input type="checkbox" data-id="h4" onchange="saveCheck()"><span class="ck-text">Duy trì ngủ trước 23h để dưỡng gan thận</span></label>
       </div>
     </div>
-    <p class="footer-note">Ghi chú lưu an toàn 100% trên điện thoại &middot; Không đưa lên mạng</p>
+
+    <!-- Sub-view Journal -->
+    <div id="subViewNote" style="display:none">
+      <div class="journal-box">
+        <div class="j-head">
+          <div class="j-title">Nhật Ký & Kế Hoạch Riêng</div>
+          <div class="j-time" id="jTime">Đã lưu tự động</div>
+        </div>
+        <textarea class="j-textarea" id="jText" placeholder="Ghi lại các chiêm nghiệm, kế hoạch tài chính, bảo vệ gia đình hoặc bài học quý tại đây..." oninput="autoSaveJournal()"></textarea>
+        <div class="j-actions">
+          <div class="j-status" id="jStatus">● Sẵn sàng ghi chép</div>
+          <button class="btn-j-copy" onclick="copyJournal()">Sao Chép</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-note">Dữ liệu lưu an toàn 100% trên điện thoại &middot; Không đưa lên mạng</p>
   </main>
 
 </div>
@@ -1093,7 +1241,11 @@ body{
 <!-- ================= BOTTOM NAVIGATION BAR ================= -->
 <nav class="bottom-nav">
   <div class="nav-inner">
-    <button class="nav-item active" id="navHaircut" onclick="switchMainTab('haircut')">
+    <button class="nav-item active" id="navCompass" onclick="switchMainTab('compass')">
+      <span class="nav-icon">🧭</span>
+      <span class="nav-label">La Bàn</span>
+    </button>
+    <button class="nav-item" id="navHaircut" onclick="switchMainTab('haircut')">
       <span class="nav-icon">✂️</span>
       <span class="nav-label">Cắt Tóc</span>
     </button>
@@ -1101,13 +1253,9 @@ body{
       <span class="nav-icon">📖</span>
       <span class="nav-label">Sổ Tay</span>
     </button>
-    <button class="nav-item" id="navChecklist" onclick="switchMainTab('checklist')">
-      <span class="nav-icon">✅</span>
-      <span class="nav-label">Hành Trình</span>
-    </button>
-    <button class="nav-item" id="navJournal" onclick="switchMainTab('journal')">
-      <span class="nav-icon">📝</span>
-      <span class="nav-label">Ghi Chú</span>
+    <button class="nav-item" id="navPersonal" onclick="switchMainTab('personal')">
+      <span class="nav-icon">👑</span>
+      <span class="nav-label">Cá Nhân</span>
     </button>
   </div>
 </nav>
@@ -1118,24 +1266,22 @@ body{
   <div class="modal-title">Cài Đặt Lên Điện Thoại</div>
   <div class="modal-sub">Trở thành App độc lập, mở 1 chạm, hoạt động 100% offline</div>
 
-  <!-- Nút Cài Nhanh cho Android Chrome nếu hỗ trợ native prompt -->
   <button class="btn-native-install" id="btnNativeInstall" onclick="triggerNativeInstall()">
     📲 BẤM ĐỂ CÀI ĐẶT NGAY
   </button>
 
-  <!-- Hướng dẫn iOS Safari -->
   <div class="install-step">
     <div class="is-num">1</div>
     <div class="is-text">
-      Mở trang này trên <b>Safari</b> (iPhone) hoặc <b>Chrome</b> (Android).
+      Mở liên kết trên <b>Chrome</b> (Android) hoặc <b>Safari</b> (iPhone).
     </div>
   </div>
 
   <div class="install-step">
     <div class="is-num">2</div>
-    <div class="is-text" id="step2Text">
-      <b>Trên iPhone:</b> Bấm biểu tượng <b>Chia sẻ</b> (hình vuông mũi tên lên ⎋) &rarr; chọn <b>"Thêm vào MH chính"</b> (Add to Home Screen ➕).<br><br>
-      <b>Trên Android:</b> Bấm menu <b>3 chấm ⋮</b> góc trên &rarr; chọn <b>"Cài đặt ứng dụng"</b> hoặc <b>"Thêm vào Màn hình chính"</b>.
+    <div class="is-text">
+      <b>Trên Android:</b> Bấm menu <b>3 chấm ⋮</b> góc trên &rarr; chọn <b>"Cài đặt ứng dụng"</b> hoặc <b>"Thêm vào Màn hình chính"</b>.<br><br>
+      <b>Trên iPhone:</b> Bấm nút <b>Chia sẻ ⎋</b> &rarr; chọn <b>"Thêm vào MH chính" ➕</b>.
     </div>
   </div>
 
@@ -1166,7 +1312,7 @@ body{
 
   <div class="dw-card" id="dwAnalysis">
     <b>📊 Luận giải Bát Tự & Cổ thư:</b><br>
-    Ngày 26 Âm lịch là ngày đại cát tăng tiến của cải. Chi Ngọ là Hỏa khí cực thịnh, Dần Ngọ bán hợp Hỏa cục bổ trợ Dụng Thần Mậu Thổ.
+    Ngày 26 Âm lịch là ngày đại cát tăng tiến của cải.
   </div>
 
   <button class="dw-close-btn" onclick="closeDrawer()">Đóng</button>
@@ -1181,6 +1327,24 @@ function jdFromDate(dd, mm, yy) {
   let jd = dd + INT((153 * m + 2) / 5) + 365 * y + INT(y / 4) - INT(y / 100) + INT(y / 400) - 32045;
   if (jd < 2299161) jd = dd + INT((153 * m + 2) / 5) + 365 * y + INT(y / 4) - 32083;
   return jd;
+}
+function jdToDate(jd) {
+  let a, b, c;
+  if (jd > 2299160) {
+    a = jd + 32044;
+    b = INT((4 * a + 3) / 146097);
+    c = a - INT((b * 146097) / 4);
+  } else {
+    b = 0;
+    c = jd + 32082;
+  }
+  const d = INT((4 * c + 3) / 1461);
+  const e = c - INT((1461 * d) / 4);
+  const m = INT((5 * e + 2) / 153);
+  const day = e - INT((153 * m + 2) / 5) + 1;
+  const month = m + 3 - 12 * INT(m / 10);
+  const year = b * 100 + d - 4800 + INT(m / 10);
+  return [day, month, year];
 }
 function newMoon(k) {
   const T = k / 1236.85, T2 = T * T, T3 = T2 * T, dr = Math.PI / 180;
@@ -1208,6 +1372,7 @@ function sunLongRad(jdn) {
   return L;
 }
 const sunSector = jdn => INT(sunLongRad(jdn - 0.5 - TZ / 24) / Math.PI * 6);
+const sunDeg = jdn => sunLongRad(jdn - 0.5 - TZ / 24) * 180 / Math.PI;
 const newMoonDay = k => INT(newMoon(k) + 0.5 + TZ / 24);
 function lunarMonth11(yy) {
   const off = jdFromDate(31, 12, yy) - 2415021;
@@ -1252,8 +1417,111 @@ function convertSolar2Lunar(dd, mm, yy) {
 
 const CAN = ["Giáp","Ất","Bính","Đinh","Mậu","Kỷ","Canh","Tân","Nhâm","Quý"];
 const CHI = ["Tý","Sửu","Dần","Mão","Thìn","Tỵ","Ngọ","Mùi","Thân","Dậu","Tuất","Hợi"];
+const WEEK = ["CN","T2","T3","T4","T5","T6","T7"];
 function dayGZ(jd){
   return {c: (jd + 9) % 10, b: (jd + 1) % 12};
+}
+function tietMonth_jd(jd){
+  const deg = sunDeg(jd);
+  return INT((((deg - 315) % 360 + 360) % 360) / 30);
+}
+function tietMonth(dd, mm, yy){
+  const jd = jdFromDate(dd, mm, yy);
+  const mi = tietMonth_jd(jd);
+  const chi = (2 + mi) % 12;
+  let ty = yy;
+  if((mi === 10 || mi === 11) && mm <= 2) ty = yy - 1;
+  const yc = (ty + 6) % 10;
+  const first = (2 * (yc % 5) + 2) % 10;
+  return {mi, chi, can: (first + mi) % 10, ty, jd};
+}
+
+/* ================= BỘ MÁY CHẤM ĐIỂM LA BÀN VẬN MỆNH (4 LỚP ĐÃ HIỆU CHỈNH) ================= */
+const CAN_PTS = [1, 1, 2, 2, 1, 1, -1, -1, -2, -2];
+const CHI_PTS = [-3, 1.5, 1.5, 1.5, 1.5, 3, 3, 1.5, -1.5, -1.5, 1.5, -3];
+
+function evalDestinyDay(d, m, y){
+  const L = convertSolar2Lunar(d, m, y);
+  const T = tietMonth(d, m, y);
+  const gz = dayGZ(L.jd);
+  const canIdx = gz.c, chiIdx = gz.b;
+  const cName = CAN[canIdx], bName = CHI[chiIdx];
+
+  let pts = CAN_PTS[canIdx] + CHI_PTS[chiIdx];
+  let notes = [];
+
+  if(bName === 'Ngọ'){ pts += 2.5; notes.push("Ngọ hợp Dần hóa Hỏa cực vượng (+2.5)"); }
+  if(bName === 'Tỵ'){ pts += 1.0; notes.push("Tỵ Lộc địa Bính Hỏa (+1.0, lưu ý đi lại)"); }
+  if(bName === 'Dần'){ pts += 1.5; notes.push("Dần đồng khí Nhật chủ, Mộc sinh Hỏa (+1.5)"); }
+  if(bName === 'Mão'){ pts += 1.5; notes.push("Mão hợp Hợi sinh Mộc Quan tinh (+1.5)"); }
+  if(bName === 'Sửu' || bName === 'Mùi'){ pts += 1.5; notes.push(`Thiên Ất Quý Nhân ${bName} phù trợ (+1.5)`); }
+  if(bName === 'Tuất'){ pts -= 0.5; notes.push("Tuất kho Hỏa nhưng xung Thìn (-0.5)"); }
+  if(bName === 'Thân'){ pts -= 5.0; notes.push("🔴 Thân TRỰC XUNG Dần bản mệnh (-5.0 · VETO)"); }
+  if(bName === 'Tý' || bName === 'Hợi'){ pts -= 0.5; notes.push("Thủy hàn vượng (-0.5)"); }
+
+  // Hiệu chỉnh 1: Giáp Sát gặp Xung (2014)
+  let satWarn = false;
+  if(cName === 'Giáp' && (bName === 'Tuất' || bName === 'Thân')){
+    pts -= 3.5; satWarn = true;
+    notes.push("⚠ Cảnh báo 2014: Giáp Sát gặp Xung (Cẩn trọng đi lại & gân cổ chân phải)");
+  }
+
+  // Hiệu chỉnh 2: Mậu Quý hợp & Bính Đinh lộ (2013 & 2016)
+  let wealthTag = false;
+  if(cName === 'Quý' && ['Tỵ','Ngọ','Mùi','Sửu','Mão','Dần'].includes(bName)){
+    pts += 2.5; wealthTag = true;
+    notes.push("💰 Mậu–Quý hợp Chính Tài trên đất Quý Nhân/Hỏa (+2.5)");
+  } else if((cName === 'Bính' || cName === 'Đinh') && ['Ngọ','Tỵ','Mùi','Dần','Mão','Tuất','Thìn','Sửu'].includes(bName)){
+    pts += 1.5;
+    if(['Ngọ','Tỵ','Mùi','Sửu'].includes(bName)) wealthTag = true;
+    notes.push(`☀ Dụng thần ${cName} Hỏa thấu xuất (+1.5)`);
+  } else if(['Ngọ','Tỵ'].includes(bName) && !satWarn){
+    wealthTag = true;
+  }
+
+  let dayStars = 3, mode = 'slow', modeLabel = '🟡 THẬN TRỌNG', action = 'Giải quyết việc thường nhật, giữ tâm bình hòa.';
+  if(bName === 'Thân'){
+    dayStars = 1; mode = 'veto'; modeLabel = '🔴 KIÊNG KÝ KẾT (NGÀY THÂN)';
+    action = 'Ngày Khỉ xung Hổ (bản mệnh): Tuyệt đối không ký việc lớn, tránh đi xa vội vã, giữ ấm hòa khí.';
+  } else if(satWarn){
+    dayStars = 1.5; mode = 'veto'; modeLabel = '🔴 CẨN TRỌNG GÂN CHÂN & ĐI LẠI';
+    action = 'Giáp Sát gặp Chi Xung: Nghỉ ký việc lớn, đi đứng cẩn thận, khởi động kỹ chân phải.';
+  } else if(pts >= 5){
+    dayStars = 5; mode = 'go'; modeLabel = wealthTag ? '🟢 HÀNH · ĐẠI CÁT TÀI LỘC' : '🟢 HÀNH · ĐẠI CÁT ĐỈNH CAO';
+    action = 'Thời cơ vàng để quyết đoán, đàm phán, chuyển tiền/giao dịch hoặc chốt việc quan trọng (7h–11h sáng).';
+  } else if(pts >= 3){
+    dayStars = 4.5; mode = 'go'; modeLabel = wealthTag ? '🟢 HÀNH · VƯỢNG TÀI QUÝ NHÂN' : '🟢 HÀNH · NGÀY TỐT';
+    action = 'Khí trường thuận lợi để thúc đẩy công việc, gặp gỡ đối tác, trao đổi việc quan trọng buổi sáng.';
+  } else if(pts >= 1.5){
+    dayStars = 4; mode = 'go'; modeLabel = '🟢 HÀNH · KHÁ TỐT';
+    action = 'Năng lượng ấm áp, thuận lợi triển khai kế hoạch, học tập và củng cố uy tín.';
+  } else if(pts >= -0.5){
+    dayStars = 3; mode = 'slow'; modeLabel = '🟡 BÌNH HÒA · GIỮ NHỊP';
+    action = 'Làm việc theo kế hoạch sẵn có, không vội vã quyết định bốc đồng.';
+  } else {
+    dayStars = 2; mode = 'stop'; modeLabel = '🔵 TÀNG · DƯỠNG KHÍ';
+    action = 'Thủy/Kim vượng: Nên thu liễm, giữ ấm cơ thể, khóa chặt túi tiền, không bàn việc lớn sau 21h.';
+  }
+
+  // Điểm tháng Tiết khí
+  const mChi = CHI[T.chi];
+  const mStarsMap = {'Ngọ':5,'Tỵ':4.5,'Mùi':4,'Tuất':4.5,'Mão':4,'Dần':3.5,'Thìn':3.5,'Hợi':3,'Sửu':3,'Thân':2.5,'Dậu':2.5,'Tý':2.5};
+  const mStars = mStarsMap[mChi] || 3.5;
+  let totalScore = Math.round((dayStars * 0.55 + mStars * 0.3 + 5 * 0.15) * 10) / 10;
+  if(mode === 'veto') totalScore = Math.min(totalScore, 2.0);
+
+  return {
+    d, m, y, L, T,
+    title: cName + ' ' + bName,
+    cName, bName,
+    dayStars,
+    totalScore: totalScore.toFixed(1),
+    mode, modeLabel, action,
+    wealth: wealthTag,
+    veto: mode === 'veto',
+    notes: notes.join(' · '),
+    bestHour: mode === 'veto' ? 'Chỉ làm việc nhẹ buổi sáng, kiêng việc đại sự' : 'Giờ Thìn (07:00–09:00) &middot; Giờ Tỵ (09:00–11:00)'
+  };
 }
 
 /* THUẬT TOÁN ĐÁNH GIÁ NGÀY CẮT TÓC (5 SAO -> 1 SAO) */
@@ -1269,7 +1537,6 @@ function evaluateHaircutDay(d, m, y){
   let reasons = [];
   let isVeto = false;
 
-  // VETO CHECKS
   if(bName === 'Thân'){
     isVeto = true;
     reasons.push("Chi Thân TRỰC XUNG Dần bản mệnh");
@@ -1309,7 +1576,6 @@ function evaluateHaircutDay(d, m, y){
     };
   }
 
-  // NGỌC HẠP CÁT KHÍ
   const GREAT_DAYS = {
     4: "Cầu tài đắc lợi, tăng trưởng của cải",
     8: "Trường thọ, thể trạng tráng kiện",
@@ -1328,7 +1594,6 @@ function evaluateHaircutDay(d, m, y){
     reasons.push(GREAT_DAYS[ld]);
   }
 
-  // DỤNG THẦN HỎA & HỶ THẦN MỘC
   if(bName === 'Ngọ'){
     baseScore += 1.2;
     reasons.push("Chi Ngọ: Hỏa cực thịnh & Dần Ngọ bán hợp Hỏa cục bổ Dụng Thần");
@@ -1404,8 +1669,10 @@ let now = new Date();
 let curYear = now.getFullYear();
 let curMonth = now.getMonth() + 1;
 let deferredPrompt = null;
+let cur30Filter = 'all';
 
 function init(){
+  renderCompass();
   renderHero();
   renderGoldenStream(curYear, curMonth);
   renderCalendar(curYear, curMonth);
@@ -1419,20 +1686,154 @@ function switchMainTab(tab){
   document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
 
-  if(tab === 'haircut'){
+  if(tab === 'compass'){
+    document.getElementById('viewCompass').classList.add('active');
+    document.getElementById('navCompass').classList.add('active');
+  } else if(tab === 'haircut'){
     document.getElementById('viewHaircut').classList.add('active');
     document.getElementById('navHaircut').classList.add('active');
   } else if(tab === 'handbook'){
     document.getElementById('viewHandbook').classList.add('active');
     document.getElementById('navHandbook').classList.add('active');
-  } else if(tab === 'checklist'){
-    document.getElementById('viewChecklist').classList.add('active');
-    document.getElementById('navChecklist').classList.add('active');
-  } else if(tab === 'journal'){
-    document.getElementById('viewJournal').classList.add('active');
-    document.getElementById('navJournal').classList.add('active');
+  } else if(tab === 'personal'){
+    document.getElementById('viewPersonal').classList.add('active');
+    document.getElementById('navPersonal').classList.add('active');
   }
   window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function switchPersonalTab(sub){
+  const bCheck = document.getElementById('btnSubCheck');
+  const bNote = document.getElementById('btnSubNote');
+  const vCheck = document.getElementById('subViewCheck');
+  const vNote = document.getElementById('subViewNote');
+  if(sub === 'check'){
+    bCheck.classList.add('active');
+    bNote.classList.remove('active');
+    vCheck.style.display = 'block';
+    vNote.style.display = 'none';
+  } else {
+    bNote.classList.add('active');
+    bCheck.classList.remove('active');
+    vCheck.style.display = 'none';
+    vNote.style.display = 'block';
+  }
+}
+
+/* Render La Bàn Hôm Nay & 30 Ngày */
+function renderCompass(){
+  const d = now.getDate(), m = now.getMonth() + 1, y = now.getFullYear();
+  const ev = evalDestinyDay(d, m, y);
+
+  document.getElementById('cDatePill').textContent = `${String(d).padStart(2,'0')}/${String(m).padStart(2,'0')} · ${String(ev.L.d).padStart(2,'0')}/${String(ev.L.m).padStart(2,'0')} ÂL`;
+  
+  const vEl = document.getElementById('cVerdict');
+  vEl.textContent = ev.modeLabel;
+  if(ev.mode === 'go'){
+    vEl.className = 'hero-status ' + (ev.dayStars >= 5 ? 'status-gold' : 'status-green');
+  } else if(ev.mode === 'veto'){
+    vEl.className = 'hero-status status-red';
+  } else {
+    vEl.className = 'hero-status status-amber';
+  }
+
+  const fullStars = Math.floor(ev.dayStars);
+  const starStr = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+  document.getElementById('cStars').textContent = starStr;
+  document.getElementById('cScoreBadge').textContent = `Điểm: ${ev.totalScore} / 5.0`;
+  document.getElementById('cGanzhiBadge').textContent = `Ngày ${ev.title}`;
+  document.getElementById('cAction').textContent = ev.action;
+
+  document.getElementById('compassHero').onclick = () => {
+    openDrawer(d, m, y, {
+      title: ev.title,
+      lunar: ev.L,
+      badge: ev.modeLabel,
+      stars: Math.round(ev.dayStars),
+      scoreVal: ev.totalScore + ' / 5.0',
+      bestHour: ev.bestHour,
+      analysis: ev.notes + '.<br><br><b>Khuyến nghị:</b> ' + ev.action
+    });
+  };
+
+  // Tiến độ tháng Tiết Khí
+  const T = ev.T;
+  let sStart = T.jd, c0 = 0;
+  while(c0 < 45){ if(tietMonth_jd(sStart - 1) !== T.mi) break; sStart--; c0++; }
+  let sEnd = T.jd, c1 = 0;
+  while(c1 < 45){ if(tietMonth_jd(sEnd + 1) !== T.mi) break; sEnd++; c1++; }
+  const total = sEnd - sStart + 1;
+  const passed = T.jd - sStart + 1;
+  const left = sEnd - T.jd + 1;
+  const mName = CAN[T.can] + ' ' + CHI[T.chi];
+  const nd = jdToDate(sEnd + 1);
+  const nextChi = CHI[(T.chi + 1) % 12];
+  const nextCan = CAN[(T.can + 1) % 10];
+
+  const isGoMonth = ['Ngọ','Tỵ','Mùi','Tuất','Mão','Dần'].includes(CHI[T.chi]);
+  document.getElementById('tietTitle').textContent = `Tháng ${mName} (${isGoMonth ? 'HÀNH' : 'TÀNG'})`;
+  document.getElementById('tietCount').textContent = `Ngày ${passed} / ${total}`;
+  document.getElementById('tietFill').style.width = Math.round((passed / total) * 100) + '%';
+  document.getElementById('tietNext').textContent = `Còn ${left} ngày sang tháng ${nextCan} ${nextChi} (${String(nd[0]).padStart(2,'0')}/${String(nd[1]).padStart(2,'0')})`;
+
+  render30List();
+}
+
+function filter30(mode, btn){
+  cur30Filter = mode;
+  document.querySelectorAll('.f-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render30List();
+}
+
+function render30List(){
+  const list = document.getElementById('compass30List');
+  list.innerHTML = '';
+  const startJd = jdFromDate(now.getDate(), now.getMonth() + 1, now.getFullYear());
+
+  for(let i = 0; i < 30; i++){
+    const [d, m, y] = jdToDate(startJd + i);
+    const ev = evalDestinyDay(d, m, y);
+
+    if(cur30Filter === 'go' && ev.mode !== 'go') continue;
+    if(cur30Filter === 'wealth' && !ev.wealth) continue;
+    if(cur30Filter === 'veto' && !ev.veto) continue;
+
+    const card = document.createElement('div');
+    card.className = 'gold-card' + (i === 0 ? ' is-today' : '') + (ev.veto ? ' is-veto' : '');
+    const fullStars = Math.floor(ev.dayStars);
+    const starStr = '★'.repeat(fullStars);
+    const dow = WEEK[new Date(y, m - 1, d).getDay()];
+
+    card.innerHTML = `
+      <div class="gc-date">
+        <div class="gc-day">${String(d).padStart(2,'0')}</div>
+        <div class="gc-mo">${dow}·T${m}</div>
+      </div>
+      <div class="gc-info">
+        <div class="gc-title">
+          <span>${ev.title}</span>
+          <span class="gc-stars" style="color:${ev.veto ? '#ff6961' : 'var(--gold)'}">${starStr} (${ev.totalScore})</span>
+        </div>
+        <div class="gc-sub">${String(ev.L.d).padStart(2,'0')}/${String(ev.L.m).padStart(2,'0')} ÂL &middot; <b style="color:${ev.mode==='go'?'#5ce38f':(ev.veto?'#ff6961':'#f5cd73')}">${ev.modeLabel}</b></div>
+        <div class="gc-hour">${ev.notes.split(' · ')[0]}</div>
+      </div>
+      <div class="gc-arrow">›</div>
+    `;
+
+    card.onclick = () => {
+      openDrawer(d, m, y, {
+        title: ev.title,
+        lunar: ev.L,
+        badge: ev.modeLabel,
+        stars: Math.round(ev.dayStars),
+        scoreVal: ev.totalScore + ' / 5.0',
+        bestHour: ev.bestHour,
+        analysis: ev.notes + '.<br><br><b>Chỉ dẫn hành động:</b> ' + ev.action
+      });
+    };
+    list.appendChild(card);
+  }
 }
 
 /* Quản lý Sub-Tab Cắt Tóc */
@@ -1592,7 +1993,7 @@ function openDrawer(d, m, y, res){
     badge.style.background = 'rgba(52,199,89,0.15)';
     badge.style.color = '#5ce38f';
     badge.style.border = '1px solid rgba(52,199,89,0.3)';
-  } else if(res.stars === 1){
+  } else if(res.stars <= 1){
     badge.style.background = 'rgba(255,69,58,0.15)';
     badge.style.color = '#ff6961';
     badge.style.border = '1px solid rgba(255,69,58,0.3)';
@@ -1602,7 +2003,8 @@ function openDrawer(d, m, y, res){
     badge.style.border = '1px solid rgba(255,255,255,0.15)';
   }
 
-  const starStr = '★'.repeat(res.stars) + '☆'.repeat(5 - res.stars);
+  const sCount = Math.max(1, Math.min(5, Math.round(res.stars)));
+  const starStr = '★'.repeat(sCount) + '☆'.repeat(5 - sCount);
   document.getElementById('dwStars').textContent = starStr;
   document.getElementById('dwScore').textContent = `(${res.scoreVal})`;
 

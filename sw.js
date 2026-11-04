@@ -1,4 +1,4 @@
-const CACHE_NAME = 'khai-van-v2';
+const CACHE_NAME = 'khai-van-v3';
 const ASSETS = [
   './',
   './index.html',
