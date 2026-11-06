@@ -1948,6 +1948,194 @@ let curMonth = now.getMonth() + 1;
 let deferredPrompt = null;
 let cur30Filter = 'all';
 
+/* ================= LOGIC THẤU NGƯỜI ĐOẠT VẬN ================= */
+const ANIMAL_NAMES = {
+  "Tý":"Chuột","Sửu":"Trâu","Dần":"Hổ","Mão":"Mèo","Thìn":"Rồng","Tỵ":"Rắn",
+  "Ngọ":"Ngựa","Mùi":"Dê","Thân":"Khỉ","Dậu":"Gà","Tuất":"Chó","Hợi":"Heo"
+};
+
+function getGZYear(y){
+  const cIdx = ((y - 4) % 10 + 10) % 10;
+  const bIdx = ((y - 4) % 12 + 12) % 12;
+  return {
+    cName: CAN[cIdx],
+    bName: CHI[bIdx],
+    cIdx: cIdx,
+    bIdx: bIdx
+  };
+}
+
+function evaluatePerson(y){
+  const gz = getGZYear(y);
+  const animal = ANIMAL_NAMES[gz.bName];
+  const lastDigit = y % 10;
+  
+  let score = 3.5;
+  let reasons = [];
+  let script = "";
+  let risk = "";
+
+  if(gz.bName === 'Ngọ'){
+    score += 1.5;
+    reasons.push("Chi Ngọ hợp Dần bản mệnh hóa Hỏa cực vượng (+1.5)");
+  } else if(gz.bName === 'Mùi'){
+    score += 1.4;
+    reasons.push("Thiên Ất Quý Nhân Mùi + Đất ấm sinh dưỡng (+1.4)");
+  } else if(gz.bName === 'Tỵ'){
+    score += 1.3;
+    reasons.push("Lộc địa Bính Hỏa sưởi ấm toàn bộ lá số (+1.3)");
+  } else if(gz.bName === 'Dần' || gz.bName === 'Mão'){
+    score += 0.8;
+    reasons.push(`Hỷ Thần ${gz.bName} Mộc trợ uy quyền lãnh đạo (+0.8)`);
+  } else if(gz.bName === 'Sửu'){
+    score += 0.8;
+    reasons.push("Thiên Ất Quý Nhân Sửu che chở gỡ nút thắt (+0.8)");
+  } else if(gz.bName === 'Thân'){
+    score -= 3.0;
+    reasons.push("🔴 Chi Thân TRỰC XUNG Dần bản mệnh (-3.0)");
+  } else if(gz.bName === 'Hợi' || gz.bName === 'Tý'){
+    score -= 1.0;
+    reasons.push(`Hàn Thủy ${gz.bName} làm hao mòn nguyên khí (-1.0)`);
+  }
+
+  if(lastDigit === 6 || lastDigit === 7){
+    score += 1.2;
+    reasons.push(`Can ${gz.cName} Hỏa: Đem ngọn lửa ấm cứu giải sát khí (+1.2)`);
+  } else if(lastDigit === 4 || lastDigit === 5){
+    score += 0.4;
+    reasons.push(`Can ${gz.cName} Mộc: Sinh Hỏa trợ lực (+0.4)`);
+  } else if(lastDigit === 0 || lastDigit === 1 || lastDigit === 2 || lastDigit === 3){
+    if(gz.bName === 'Thân' || gz.bName === 'Hợi' || gz.bName === 'Tý'){
+      score -= 0.8;
+      reasons.push(`Can ${gz.cName} (Kim/Thủy) làm lạnh tăng độ kỵ (-0.8)`);
+    }
+  }
+
+  score = Math.max(1, Math.min(5, Math.round(score * 10) / 10));
+
+  let badge = "CÁT LỢI (4 SAO)";
+  let badgeClass = "b-4";
+  if(score >= 4.5){
+    badge = "ĐẠI CÁT ĐỈNH CAO (5 SAO)"; badgeClass = "b-5";
+    script = "Nói chuyện cởi mở, bàn việc lớn, trọng dụng làm tướng tiên phong hoặc đối tác thân tín.";
+    risk = "Tâm đầu ý hợp, chỉ cần thống nhất rõ mục tiêu và quyền lợi từ đầu.";
+  } else if(score >= 3.8){
+    badge = "RẤT TỐT (4 SAO)"; badgeClass = "b-4";
+    script = "Giữ thái độ tôn trọng, trao đổi việc chuyên môn, giao phó các nhiệm vụ hành chính/kỹ thuật.";
+    risk = "An toàn, hỗ trợ tốt cho công việc.";
+  } else if(score >= 2.8){
+    badge = "TRUNG BÌNH (3 SAO)"; badgeClass = "b-2";
+    script = "Xã giao lịch thiệp, nói chuyện công việc rành mạch, hạn chế chia sẻ việc gia đình sâu kín.";
+    risk = "Dễ có bất đồng quan điểm lặt vặt hoặc hao tổn thời gian giải thích.";
+  } else {
+    badge = "CẢNH GIÁC / NÉ TRÁNH (1 SAO)"; badgeClass = "b-1";
+    script = "Giao tiếp khoảng cách, dứt khoát trên giấy tờ pháp lý. Không đôi co tranh luận miệng.";
+    risk = "TUYỆT ĐỐI KHÔNG: Hùn vốn, cho vay tiền, đứng tên bảo lãnh nợ, hoặc nhận làm phụ tá ruột!";
+  }
+
+  return {
+    year: y,
+    title: gz.cName + " " + gz.bName,
+    animal: animal,
+    score: score.toFixed(1),
+    stars: Math.round(score),
+    badge: badge,
+    badgeClass: badgeClass,
+    reasons: reasons.join("<br>• "),
+    script: script,
+    risk: risk
+  };
+}
+
+function initPersonSelector(){
+  const sel = document.getElementById('pYearSelector');
+  if(!sel) return;
+  sel.innerHTML = '';
+  for(let y = 2025; y >= 1960; y--){
+    const gz = getGZYear(y);
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = `${y} — ${gz.cName} ${gz.bName} (${ANIMAL_NAMES[gz.bName]})`;
+    if(y === 1986) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+function runPeopleProfiler(){
+  const sel = document.getElementById('pYearSelector');
+  if(!sel) return;
+  const y = parseInt(sel.value, 10);
+  const res = evaluatePerson(y);
+  const fullStars = Math.floor(res.stars);
+  const starStr = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+
+  const box = document.getElementById('peopleProfileBox');
+  if(!box) return;
+  box.innerHTML = `
+    <div class="pr-head">
+      <div>
+        <div class="pr-year">${res.year}</div>
+        <div class="pr-ganzhi">Tuổi ${res.title} &middot; Con ${res.animal}</div>
+      </div>
+      <div class="pr-badge ${res.badgeClass}">${res.badge}</div>
+    </div>
+
+    <div class="pr-stars">${starStr} <span style="font-size:12px;color:var(--gold-champagne);font-weight:700">(${res.score} / 5.0)</span></div>
+
+    <div class="pr-item">
+      <b>📊 Luận Giải Tương Tác Với Chủ Nhân (Mậu Dần):</b>
+      • ${res.reasons}
+    </div>
+
+    <div class="pr-item">
+      <b>🎯 Bí Quyết Giao Tiếp & Ứng Xử Đắc Nhân Tâm:</b>
+      ${res.script}
+    </div>
+
+    <div class="pr-item" style="border-color:${res.stars<=2?'rgba(255,69,58,0.3)':'var(--border)'}">
+      <b style="color:${res.stars<=2?'#ff8f82':'var(--gold-champagne)'}">🛡️ Giới Hạn An Toàn Về Tiền Bạc & Trách Nhiệm:</b>
+      ${res.risk}
+    </div>
+  `;
+}
+
+function setQuickPplYear(y, el){
+  const sel = document.getElementById('pYearSelector');
+  if(sel) sel.value = y;
+  document.querySelectorAll('.quick-chips .qc-pill').forEach(p => p.classList.remove('active'));
+  if(el) el.classList.add('active');
+  runPeopleProfiler();
+}
+
+function switchPeopleSubTab(sub){
+  const bLookup = document.getElementById('btnPplLookup');
+  const bPillars = document.getElementById('btnPplPillars');
+  const bAnimals = document.getElementById('btnPplAnimals');
+  const bRadar = document.getElementById('btnPplRadar');
+
+  const vLookup = document.getElementById('subPplLookup');
+  const vPillars = document.getElementById('subPplPillars');
+  const vAnimals = document.getElementById('subPplAnimals');
+  const vRadar = document.getElementById('subPplRadar');
+
+  [bLookup, bPillars, bAnimals, bRadar].forEach(b => b.classList.remove('active'));
+  [vLookup, vPillars, vAnimals, vRadar].forEach(v => v.style.display = 'none');
+
+  if(sub === 'lookup'){
+    bLookup.classList.add('active');
+    vLookup.style.display = 'block';
+  } else if(sub === 'pillars'){
+    bPillars.classList.add('active');
+    vPillars.style.display = 'block';
+  } else if(sub === 'animals'){
+    bAnimals.classList.add('active');
+    vAnimals.style.display = 'block';
+  } else if(sub === 'radar'){
+    bRadar.classList.add('active');
+    vRadar.style.display = 'block';
+  }
+}
+
 function init(){
   renderCompass();
   renderHero();
@@ -1956,9 +2144,11 @@ function init(){
   loadChecklist();
   loadJournal();
   setupInstallPrompt();
+  initPersonSelector();
+  runPeopleProfiler();
 }
 
-/* Quản lý 4 Tab Chính */
+/* Quản lý 5 Tab Chính */
 function switchMainTab(tab){
   document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
@@ -1966,6 +2156,9 @@ function switchMainTab(tab){
   if(tab === 'compass'){
     document.getElementById('viewCompass').classList.add('active');
     document.getElementById('navCompass').classList.add('active');
+  } else if(tab === 'people'){
+    document.getElementById('viewPeople').classList.add('active');
+    document.getElementById('navPeople').classList.add('active');
   } else if(tab === 'haircut'){
     document.getElementById('viewHaircut').classList.add('active');
     document.getElementById('navHaircut').classList.add('active');
