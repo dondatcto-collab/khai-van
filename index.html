@@ -10,11 +10,7 @@
 <meta name="theme-color" content="#08080b">
 
 <!-- PWA Manifest Data URI -->
-<!-- PWA Manifest & Icons -->
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<!-- Old data manifest charset=utf-8,%7B%22name%22%3A%22L%E1%BB%8Bch%20Khai%20V%E1%BA%ADn%20%26%20S%E1%BB%95%20Tay%20V%C3%B5%20T%E1%BA%A5n%20%C4%90%E1%BA%A1t%22%2C%22short_name%22%3A%22Khai%20V%E1%BA%ADn%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2308080b%22%2C%22theme_color%22%3A%22%2308080b%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'115'%20fill%3D'%2308080b'%2F%253E%253Ccircle%20cx%3D'256'%20cy%3D'256'%20r%3D'190'%20fill%3D'none'%20stroke%3D'%23d4af37'%20stroke-width%3D'12'%2F%253E%253Cpolygon%20points%3D'256%2C120%20295%2C200%20384%2C213%20320%2C275%20335%2C364%20256%2C322%20177%2C364%20192%2C275%20128%2C213%20217%2C200'%20fill%3D'%23e8cfa1'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22L%E1%BB%8Bch%20Khai%20V%E1%BA%ADn%20%26%20S%E1%BB%95%20Tay%20V%C3%B5%20T%E1%BA%A5n%20%C4%90%E1%BA%A1t%22%2C%22short_name%22%3A%22Khai%20V%E1%BA%ADn%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2308080b%22%2C%22theme_color%22%3A%22%2308080b%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'115'%20fill%3D'%2308080b'%2F%253E%253Ccircle%20cx%3D'256'%20cy%3D'256'%20r%3D'190'%20fill%3D'none'%20stroke%3D'%23d4af37'%20stroke-width%3D'12'%2F%253E%253Cpolygon%20points%3D'256%2C120%20295%2C200%20384%2C213%20320%2C275%20335%2C364%20256%2C322%20177%2C364%20192%2C275%20128%2C213%20217%2C200'%20fill%3D'%23e8cfa1'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
 
 <!-- Apple Touch Icon Data URI -->
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='115' fill='%2308080b'/%3E%3Ccircle cx='256' cy='256' r='190' fill='none' stroke='%23d4af37' stroke-width='14'/%3E%3Cpolygon points='256,120 295,200 384,213 320,275 335,364 256,322 177,364 192,275 128,213 217,200' fill='%23e8cfa1'/%3E%3C/svg%3E">
@@ -691,6 +687,51 @@ body{
   cursor:pointer;
 }
 
+
+/* ================= THẤU NGƯỜI & ĐỐI TÁC CSS ================= */
+.sc-input-group{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:10px}
+.year-select{width:100%;background:rgba(0,0,0,0.4);border:1px solid var(--border-gold);border-radius:12px;padding:9px 12px;color:var(--gold-champagne);font-size:14px;font-weight:700;outline:none;-webkit-appearance:none}
+.btn-quick-scan{background:linear-gradient(135deg,var(--gold),#b8860b);border:none;color:#111;font-size:12.5px;font-weight:800;padding:0 14px;border-radius:12px;cursor:pointer}
+.quick-chips{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.quick-chips::-webkit-scrollbar{display:none}
+.qc-pill{background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text-secondary);font-size:11px;font-weight:600;padding:4px 9px;border-radius:12px;white-space:nowrap;cursor:pointer}
+.qc-pill.active{border-color:var(--gold);color:var(--gold-champagne);background:rgba(212,175,55,0.12)}
+.profile-result{background:var(--surface);border:1px solid var(--border-gold);border-radius:18px;padding:16px;margin-bottom:14px}
+.pr-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:10px}
+.pr-year{font-size:22px;font-weight:800;color:#fff;font-family:var(--font-serif);line-height:1}
+.pr-ganzhi{font-size:13.5px;font-weight:700;color:var(--gold-champagne);margin-top:3px}
+.pr-badge{font-size:11px;font-weight:800;padding:3px 8px;border-radius:8px}
+.b-5{background:rgba(212,175,55,0.2);color:#f7e3a3;border:1px solid rgba(212,175,55,0.4)}
+.b-4{background:rgba(52,199,89,0.15);color:#5ce38f;border:1px solid rgba(52,199,89,0.3)}
+.b-2{background:rgba(245,185,66,0.15);color:#f5cd73;border:1px solid rgba(245,185,66,0.3)}
+.b-1{background:rgba(255,69,58,0.15);color:#ff6961;border:1px solid rgba(255,69,58,0.3)}
+.pr-stars{color:var(--gold);font-size:15px;letter-spacing:2px;margin-bottom:10px}
+.pr-item{background:rgba(0,0,0,0.25);border:1px solid var(--border);border-radius:12px;padding:9px 12px;margin-bottom:8px;font-size:12.5px;line-height:1.45}
+.pr-item b{color:var(--gold-champagne);display:block;margin-bottom:2px}
+.pillar-4-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.p4-item{background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center}
+.p4-name{font-size:10.5px;font-weight:700;color:var(--text-secondary);text-transform:uppercase}
+.p4-animal{font-size:20px;margin:3px 0}
+.p4-gz{font-size:12.5px;font-weight:800;color:var(--gold-champagne)}
+.p4-role{font-size:10px;color:var(--text-tertiary);margin-top:2px}
+.paradox-box{background:rgba(255,69,58,0.08);border:1px solid rgba(255,69,58,0.25);border-radius:14px;padding:12px;margin-top:10px;font-size:12.5px;line-height:1.45}
+.paradox-box b{color:#ff9885}
+.group-header{font-size:12.5px;font-weight:800;letter-spacing:0.5px;margin:14px 0 8px 4px;display:flex;align-items:center;gap:6px}
+.gh-gold{color:var(--gold)}
+.gh-green{color:var(--emerald)}
+.gh-amber{color:var(--amber)}
+.gh-red{color:var(--ruby)}
+.animal-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:11px 13px;margin-bottom:8px;display:flex;align-items:flex-start;gap:11px}
+.ac-icon{font-size:24px;flex:none;line-height:1;margin-top:2px}
+.ac-body{flex:1}
+.ac-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
+.ac-name{font-size:14px;font-weight:700;color:#fff}
+.ac-stars{font-size:11.5px;color:var(--gold)}
+.ac-rule{font-size:12px;color:var(--gold-champagne);font-weight:600;margin-bottom:2px}
+.ac-desc{font-size:11.5px;color:var(--text-secondary);line-height:1.4}
+.radar-item{background:rgba(0,0,0,0.25);border:1px solid var(--border);border-radius:12px;padding:11px 12px;margin-bottom:9px;font-size:12.5px;line-height:1.45}
+.radar-item b{color:var(--gold-champagne);font-size:13px;display:flex;align-items:center;gap:6px;margin-bottom:3px}
+
 /* ================= FIXED BOTTOM NAV BAR (iOS Glass) ================= */
 .bottom-nav{
   position:fixed;
@@ -708,7 +749,7 @@ body{
   max-width:440px;
   margin:0 auto;
   display:grid;
-  grid-template-columns:repeat(4, 1fr);
+  grid-template-columns:repeat(5, 1fr);
   gap:4px;
 }
 .nav-item{
@@ -1236,6 +1277,238 @@ body{
     <p class="footer-note">Dữ liệu lưu an toàn 100% trên điện thoại &middot; Không đưa lên mạng</p>
   </main>
 
+  <!-- ================= VIEW 5: THẤU NGƯỜI ĐOẠT VẬN ================= -->
+  <main class="app-view" id="viewPeople">
+    
+    <!-- Sub-tabs Thấu Người -->
+    <nav class="sub-tabs">
+      <button class="sub-tab-btn active" id="btnPplLookup" onclick="switchPeopleSubTab('lookup')">
+        🔍 Soi Tuổi
+      </button>
+      <button class="sub-tab-btn" id="btnPplPillars" onclick="switchPeopleSubTab('pillars')">
+        🧭 4 Trụ & Bản Thể
+      </button>
+      <button class="sub-tab-btn" id="btnPplAnimals" onclick="switchPeopleSubTab('animals')">
+        👑 12 Con Giáp
+      </button>
+      <button class="sub-tab-btn" id="btnPplRadar" onclick="switchPeopleSubTab('radar')">
+        👁️ Nhìn Người 3'
+      </button>
+    </nav>
+
+    <!-- Sub-view 1: Tra Cứu Tuổi -->
+    <div id="subPplLookup">
+      <div class="handbook-card gold-border" style="margin-bottom:12px">
+        <div class="h-tag">⚡ Soi Độ Hợp — Kỵ Đối Tác (1960–2025)</div>
+        <div class="sc-input-group">
+          <select class="year-select" id="pYearSelector" onchange="runPeopleProfiler()">
+            <!-- Populated by JS -->
+          </select>
+          <button class="btn-quick-scan" onclick="runPeopleProfiler()">Soi Mệnh</button>
+        </div>
+        <div class="quick-chips">
+          <span class="qc-pill active" onclick="setQuickPplYear(1986, this)">1986 Bính Dần</span>
+          <span class="qc-pill" onclick="setQuickPplYear(1990, this)">1990 Canh Ngọ</span>
+          <span class="qc-pill" onclick="setQuickPplYear(1991, this)">1991 Tân Mùi</span>
+          <span class="qc-pill" onclick="setQuickPplYear(1992, this)">1992 Nhâm Thân</span>
+          <span class="qc-pill" onclick="setQuickPplYear(1983, this)">1983 Quý Hợi</span>
+          <span class="qc-pill" onclick="setQuickPplYear(1995, this)">1995 Ất Hợi</span>
+          <span class="qc-pill" onclick="setQuickPplYear(2016, this)">2016 Bính Thân</span>
+        </div>
+      </div>
+
+      <div class="profile-result" id="peopleProfileBox">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+    <!-- Sub-view 2: Bí Pháp 4 Trụ -->
+    <div id="subPplPillars" style="display:none">
+      <div class="handbook-card gold-border">
+        <div class="h-tag">👑 Chân Lý Huyền Học</div>
+        <div class="h-title">Tại Sao Chủ Nhân Là HỔ Chứ Không Phải RỒNG?</div>
+        <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.5">
+          Dân gian chỉ biết hỏi năm sinh vì ngày xưa người ta không lưu giữ ngày giờ. Nhưng trong Tử Bình Chính Tông: <b>Năm sinh chỉ là chiếc áo khoác ngoài (15%)</b>, còn <b>Ngày sinh mới là CHÍNH BẢN THÂN TA (Nhật Chủ - 50%)</b>!
+        </p>
+
+        <div class="pillar-4-grid">
+          <div class="p4-item">
+            <div class="p4-name">1. Năm (15%)</div>
+            <div class="p4-animal">🐉</div>
+            <div class="p4-gz">Mậu Thìn</div>
+            <div class="p4-role">Áo khoác ngoài</div>
+          </div>
+          <div class="p4-item">
+            <div class="p4-name">2. Tháng (25%)</div>
+            <div class="p4-animal">🐖</div>
+            <div class="p4-gz">Quý Hợi</div>
+            <div class="p4-role">Môi trường sống</div>
+          </div>
+          <div class="p4-item" style="border-color:var(--gold);background:rgba(212,175,55,0.08)">
+            <div class="p4-name" style="color:var(--gold)">3. NGÀY (50%) ⭐</div>
+            <div class="p4-animal">🐯</div>
+            <div class="p4-gz" style="color:#fff">MẬU DẦN</div>
+            <div class="p4-role" style="color:var(--gold-champagne)">CHÍNH BẢN THÂN</div>
+          </div>
+          <div class="p4-item">
+            <div class="p4-name">4. Giờ (10%)</div>
+            <div class="p4-animal">🐉</div>
+            <div class="p4-gz">Bính Thìn</div>
+            <div class="p4-role">Hành động vi mô</div>
+          </div>
+        </div>
+
+        <div class="paradox-box">
+          <b>⚠ Cạm Bẫy Dân Gian: "Tam Hợp biến Tam Tai"</b><br>
+          Dân gian bảo: <i>"Thìn hợp Khỉ (Thân)"</i>. Nhưng nếu Chủ nhân đem Khỉ về: Khỉ bắt tay Rồng ngoài cổng, rồi <b>chém thẳng vào Hổ (Dần - Ngày sinh)</b> trong nhà! Đó là lý do gặp Khỉ là đau chân, hao tiền và mệt mỏi!
+        </div>
+      </div>
+
+      <div class="handbook-card">
+        <div class="h-tag">⚖️ Cách Ứng Dụng Hằng Ngày</div>
+        <div class="h-title">Công Thức Phân Vai Chuẩn Xác</div>
+        <div style="font-size:12.5px;line-height:1.5;color:var(--text-secondary)">
+          • <b>Năm sinh:</b> Xã giao bên ngoài, ai hỏi cứ cười bảo tuổi Rồng.<br>
+          • <b>Tháng sinh:</b> Nhìn thời tiết để biết mùa <b>HÀNH</b> (tháng 5, 6, 7, 10 DL) hay mùa <b>TÀNG</b> (tháng 11, 12, 1 DL).<br>
+          • <b>Ngày sinh:</b> Quyết định sinh tử — Nhớ mình là <b>Mậu Dần (Hổ cần Lửa)</b> để né Khỉ và chọn ngày Ngọ, Mùi, Tỵ.<br>
+          • <b>Giờ sinh:</b> Canh đúng giờ <b>Thìn (7–9h) & Tỵ (9–11h) sáng</b> để ra quyết định lớn.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-view 3: 12 Con Giáp -->
+    <div id="subPplAnimals" style="display:none">
+      <div class="group-header gh-gold">⭐ NHÓM 1: ĐẠI CÁT HỎA & QUÝ NHÂN (5 SAO)</div>
+      
+      <div class="animal-card">
+        <div class="ac-icon">🐴</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Ngọ (Ngựa)</span><span class="ac-stars">★★★★★</span></div>
+          <div class="ac-rule">Dần – Ngọ Bán Hợp Hỏa Cực Thịnh</div>
+          <div class="ac-desc">Người này mang ngọn lửa hưng phấn và nhiệt huyết đến cho Chủ nhân. Làm việc chung tiến độ cực nhanh, tư duy đồng điệu.</div>
+        </div>
+      </div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐐</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Mùi (Dê)</span><span class="ac-stars">★★★★★</span></div>
+          <div class="ac-rule">Thiên Ất Quý Nhân + Đất Ấm Chứa Lửa</div>
+          <div class="ac-desc">Quý nhân đắc lực nhất! Lời nói của Chủ nhân với họ rất có trọng lượng. Nhờ cậy hay giao việc cho tuổi Mùi luôn êm xuôi và an tâm.</div>
+        </div>
+      </div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐍</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Tỵ (Rắn)</span><span class="ac-stars">★★★★★</span></div>
+          <div class="ac-rule">Lộc Địa Của Bính Hỏa Thái Dương</div>
+          <div class="ac-desc">Mang lại vận may tài lộc và danh tiếng. Cực tốt khi bàn chuyện làm ăn, hợp tác chiến lược dài hạn.</div>
+        </div>
+      </div>
+
+      <div class="group-header gh-green">🟢 NHÓM 2: QUYỀN LỰC & ĐỒNG HÀNH (4 SAO)</div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐯</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Dần (Hổ)</span><span class="ac-stars">★★★★☆</span></div>
+          <div class="ac-rule">Đồng Khí Tương Cầu — Trợ Uy Quyền</div>
+          <div class="ac-desc">Tác phong bản lĩnh, dám nghĩ dám làm giống Chủ nhân. Dùng làm tướng tiên phong hoặc đối tác cùng chí hướng rất mạnh.</div>
+        </div>
+      </div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐇</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Mão (Mèo)</span><span class="ac-stars">★★★★☆</span></div>
+          <div class="ac-rule">Chính Quan — Hợp Hợi Hóa Mộc Quyền</div>
+          <div class="ac-desc">Khéo léo, lễ độ, rất biết giữ thể diện và nâng tầm uy tín cho Chủ nhân. Hợp làm trợ lý hành chính, ngoại giao.</div>
+        </div>
+      </div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐂</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Sửu (Trâu)</span><span class="ac-stars">★★★★☆</span></div>
+          <div class="ac-rule">Thiên Ất Quý Nhân Thứ Hai</div>
+          <div class="ac-desc">Đáng tin cậy, trung hậu. Gặp lúc khó khăn bế tắc họ sẽ là người âm thầm hỗ trợ Chủ nhân gỡ nút thắt.</div>
+        </div>
+      </div>
+
+      <div class="group-header gh-amber">🟡 NHÓM 3: THẬN TRỌNG & TÀNG KHÍ (2–3 SAO)</div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐕</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Tuất (Chó)</span><span class="ac-stars">★★★☆☆</span></div>
+          <div class="ac-rule">Hợp Dần Nhưng Xung Thìn</div>
+          <div class="ac-desc">Nhiệt tình nhưng hay bộc trực, dễ tranh luận gay gắt. Tránh người tuổi Giáp Tuất (1994) kẻo hao tổn gân chân và tinh thần.</div>
+        </div>
+      </div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐓</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Dậu (Gà)</span><span class="ac-stars">★★★☆☆</span></div>
+          <div class="ac-rule">Thương Quan — Hao Khí Lời Nói</div>
+          <div class="ac-desc">Ngoài xã hội dễ làm Chủ nhân tốn công giải thích, tranh cãi. Nhưng trong nhà (con gái Quý Dậu) lại cực kỳ yêu thương Ba.</div>
+        </div>
+      </div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐖</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Hợi (Heo) & Tuổi Tý (Chuột)</span><span class="ac-stars">★★☆☆☆</span></div>
+          <div class="ac-rule">Thủy Hàn — Bào Mòn Tài Khí</div>
+          <div class="ac-desc">Nước lạnh làm nhão đất Mậu Thổ. Giao dịch xã giao bình thường nhưng <b>tuyệt đối không cho vay mượn, không đứng bảo lãnh nợ</b>.</div>
+        </div>
+      </div>
+
+      <div class="group-header gh-red">🔴 NHÓM 4: ĐẠI KỴ PHỦ QUYẾT (VETO — 1 SAO)</div>
+
+      <div class="animal-card" style="border-color:rgba(255,69,58,0.4);background:linear-gradient(135deg,rgba(255,69,58,0.08),#14141c)">
+        <div class="ac-icon">🐒</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Thân (Khỉ)</span><span class="ac-stars" style="color:var(--ruby)">★☆☆☆☆</span></div>
+          <div class="ac-rule" style="color:var(--ruby)">Dần – Thân Trực Xung & Thân Hại Hợi</div>
+          <div class="ac-desc">Khắc chế trực tiếp vào bản thể Chủ nhân. Trừ người có <b>Bính Hỏa</b> (như sinh năm đuôi 6 Bính Thân 2016), còn lại <b>1992, 2004, 1980</b> cần giữ khoảng cách an toàn, không giao chìa khóa tài chính!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-view 4: Thuật Nhìn Người 3 Phút -->
+    <div id="subPplRadar" style="display:none">
+      <div class="handbook-card gold-border">
+        <div class="h-tag">👁️ Bí Thuật Thực Chiến</div>
+        <div class="h-title">Đo Lường Năng Lượng Không Cần Ngày Sinh</div>
+        <p style="font-size:12.5px;color:var(--text-secondary);margin-bottom:12px">
+          Khi mới gặp đối tác chưa tiện hỏi tuổi, Chủ nhân chỉ cần quan sát 3 giác quan trong 3 phút đầu tiên:
+        </p>
+
+        <div class="radar-item">
+          <b>1. Thước Đo "Đầu Óc & Khí Sắc" Của Chủ Nhân</b>
+          Ngồi nói chuyện 15 phút mà Chủ nhân thấy <b>đầu óc hanh thông, ấm người, nảy ra ý tưởng mới</b> &rarr; Trường năng lượng của họ đang phát Hỏa/Mộc dưỡng Chủ nhân.<br>
+          Nếu thấy <b>nặng đầu, lạnh lưng, ức chế muốn bắt bẻ</b> &rarr; Họ mang khí Hàn Thủy hoặc Thân Kim trực xung, lập tức dựng hàng rào cảnh giác!
+        </div>
+
+        <div class="radar-item">
+          <b>2. Thần Khí & Giọng Nói Của Đối Phương</b>
+          • <b>Người Hỏa/Mộc (Hợp):</b> Mắt sáng, sắc diện hồng hào, giọng vang ấm dứt khoát, đi đứng nhanh nhẹn &rarr; Hợp tác rất thuận.<br>
+          • <b>Người Thủy/Kim Hàn (Kỵ):</b> Da tái xanh, tay chân lạnh, giọng trầm rề rà, hay thở dài than thở &rarr; Dễ kéo tụt sinh khí của Chủ nhân.
+        </div>
+
+        <div class="radar-item">
+          <b>3. Tuyệt Chiêu "Số Cuối Năm Sinh"</b>
+          • Năm sinh đuôi <b>6, 7</b> (Bính, Đinh - LỬA): <b>Cực kỳ hợp!</b> Dù tuổi Khỉ hay Chuột cũng hóa giải được 60–70% độ xấu.<br>
+          • Năm sinh đuôi <b>0, 1, 2, 3</b> (Kim, Thủy): Nếu đi cùng tuổi Khỉ, Heo, Chuột &rarr; <b>KỴ NẶNG (80%)</b>, cấm dính líu tiền bạc!
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-note">Cẩm Nang Thấu Người & Giao Tiếp Đỉnh Cao &middot; Võ Tấn Đạt</p>
+  </main>
+
 </div>
 
 <!-- ================= BOTTOM NAVIGATION BAR ================= -->
@@ -1244,6 +1517,10 @@ body{
     <button class="nav-item active" id="navCompass" onclick="switchMainTab('compass')">
       <span class="nav-icon">🧭</span>
       <span class="nav-label">La Bàn</span>
+    </button>
+        <button class="nav-item" id="navPeople" onclick="switchMainTab('people')">
+      <span class="nav-icon">🔍</span>
+      <span class="nav-label">Thấu Người</span>
     </button>
     <button class="nav-item" id="navHaircut" onclick="switchMainTab('haircut')">
       <span class="nav-icon">✂️</span>
@@ -2124,19 +2401,6 @@ function triggerNativeInstall(){
 }
 
 init();
-
-/* ĐĂNG KÝ SERVICE WORKER CHUẨN PWA */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => {
-        console.log('SW active:', reg.scope);
-        reg.update();
-      })
-      .catch(err => console.log('SW error:', err));
-  });
-}
-
 </script>
 </body>
 </html>
