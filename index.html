@@ -9,11 +9,13 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#08080b">
 
-<!-- PWA Manifest Data URI -->
-<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22L%E1%BB%8Bch%20Khai%20V%E1%BA%ADn%20%26%20S%E1%BB%95%20Tay%20V%C3%B5%20T%E1%BA%A5n%20%C4%90%E1%BA%A1t%22%2C%22short_name%22%3A%22Khai%20V%E1%BA%ADn%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2308080b%22%2C%22theme_color%22%3A%22%2308080b%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'115'%20fill%3D'%2308080b'%2F%253E%253Ccircle%20cx%3D'256'%20cy%3D'256'%20r%3D'190'%20fill%3D'none'%20stroke%3D'%23d4af37'%20stroke-width%3D'12'%2F%253E%253Cpolygon%20points%3D'256%2C120%20295%2C200%20384%2C213%20320%2C275%20335%2C364%20256%2C322%20177%2C364%20192%2C275%20128%2C213%20217%2C200'%20fill%3D'%23e8cfa1'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
-
-<!-- Apple Touch Icon Data URI -->
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='115' fill='%2308080b'/%3E%3Ccircle cx='256' cy='256' r='190' fill='none' stroke='%23d4af37' stroke-width='14'/%3E%3Cpolygon points='256,120 295,200 384,213 320,275 335,364 256,322 177,364 192,275 128,213 217,200' fill='%23e8cfa1'/%3E%3C/svg%3E">
+<!-- PWA Manifest & Icons (WebAPK Compliant) -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
 
 <title>La Bàn Vận Mệnh & Sổ Tay — Võ Tấn Đạt</title>
 <style>
@@ -2574,6 +2576,14 @@ function setupInstallPrompt(){
 }
 
 function showInstallModal(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      deferredPrompt = null;
+      hideInstallModal();
+    });
+    return;
+  }
   document.getElementById('installModalBackdrop').classList.add('active');
   document.getElementById('installModal').classList.add('active');
 }
@@ -2586,7 +2596,7 @@ function hideInstallModal(){
 function triggerNativeInstall(){
   if(deferredPrompt){
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
+    deferredPrompt.userChoice.then((choiceResult) => {
       deferredPrompt = null;
       hideInstallModal();
     });
@@ -2594,6 +2604,18 @@ function triggerNativeInstall(){
 }
 
 init();
+
+/* ================= ĐĂNG KÝ SERVICE WORKER CHUẨN PWA ================= */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => {
+        console.log('PWA ServiceWorker registered with scope:', reg.scope);
+        reg.update();
+      })
+      .catch(err => console.log('ServiceWorker registration failed:', err));
+  });
+}
 </script>
 </body>
 </html>
