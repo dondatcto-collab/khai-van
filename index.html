@@ -1438,13 +1438,22 @@ body{
         </div>
       </div>
 
-      <div class="group-header gh-amber">🟡 NHÓM 3: THẬN TRỌNG & TÀNG KHÍ (2–3 SAO)</div>
+      <div class="group-header gh-amber">🟡 NHÓM 3: BÌNH HÒA & THẬN TRỌNG (2.5–3 SAO)</div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐉</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Thìn (Rồng)</span><span class="ac-stars">★★★☆☆</span></div>
+          <div class="ac-rule">Đồng Duyên Trụ Năm & Tam Hội Mộc Phương Đông</div>
+          <div class="ac-desc">Cùng khí chất Mậu Thìn với Trụ Năm và Giờ sinh của Chủ nhân. Nói chuyện tầm nhìn vĩ mô rất hợp, hiểu tính nhau. Tuy nhiên Thìn là Thủy khố (mang nước ẩm), cần minh bạch sổ sách rõ ràng khi hợp tác.</div>
+        </div>
+      </div>
 
       <div class="animal-card">
         <div class="ac-icon">🐕</div>
         <div class="ac-body">
           <div class="ac-head"><span class="ac-name">Tuổi Tuất (Chó)</span><span class="ac-stars">★★★☆☆</span></div>
-          <div class="ac-rule">Hợp Dần Nhưng Xung Thìn</div>
+          <div class="ac-rule">Hợp Dần Nhưng Trực Xung Thìn Trụ Năm</div>
           <div class="ac-desc">Nhiệt tình nhưng hay bộc trực, dễ tranh luận gay gắt. Tránh người tuổi Giáp Tuất (1994) kẻo hao tổn gân chân và tinh thần.</div>
         </div>
       </div>
@@ -1461,9 +1470,18 @@ body{
       <div class="animal-card">
         <div class="ac-icon">🐖</div>
         <div class="ac-body">
-          <div class="ac-head"><span class="ac-name">Tuổi Hợi (Heo) & Tuổi Tý (Chuột)</span><span class="ac-stars">★★☆☆☆</span></div>
-          <div class="ac-rule">Thủy Hàn — Bào Mòn Tài Khí</div>
-          <div class="ac-desc">Nước lạnh làm nhão đất Mậu Thổ. Giao dịch xã giao bình thường nhưng <b>tuyệt đối không cho vay mượn, không đứng bảo lãnh nợ</b>.</div>
+          <div class="ac-head"><span class="ac-name">Tuổi Hợi (Heo)</span><span class="ac-stars">★★☆☆☆</span></div>
+          <div class="ac-rule">Dần – Hợi Lục Hợp Nhưng Thủy Hàn Hao Nguyên Khí</div>
+          <div class="ac-desc">Đồng khí Trụ Tháng Quý Hợi, tình cảm gắn bó, chia sẻ tâm tư tốt. Tuy nhiên nước lạnh dễ làm trôi đất, <b>tuyệt đối không đứng tên vay nợ hay bảo lãnh tài chính hộ</b>.</div>
+        </div>
+      </div>
+
+      <div class="animal-card">
+        <div class="ac-icon">🐁</div>
+        <div class="ac-body">
+          <div class="ac-head"><span class="ac-name">Tuổi Tý (Chuột)</span><span class="ac-stars">★★☆☆☆</span></div>
+          <div class="ac-rule">Cực Thủy Xung Ngọ Hỏa — Hao Tài Tổn Khí</div>
+          <div class="ac-desc">Thủy thuần âm làm lạnh đất Mậu Dần, xung khắc ngọn lửa Dụng thần. Giao tiếp xã giao lịch thiệp, <b>cấm kỵ hùn vốn làm ăn mạo hiểm hoặc cho vay tiền</b>.</div>
         </div>
       </div>
 
@@ -1995,6 +2013,15 @@ function evaluatePerson(y){
   } else if(gz.bName === 'Thân'){
     score -= 3.0;
     reasons.push("🔴 Chi Thân TRỰC XUNG Dần bản mệnh (-3.0)");
+  } else if(gz.bName === 'Thìn'){
+    score += 0.2;
+    reasons.push("Chi Thìn đồng duyên Trụ Năm (Mậu Thìn), hợp Dần Mộc hội (+0.2)");
+  } else if(gz.bName === 'Tuất'){
+    score -= 0.3;
+    reasons.push("Chi Tuất là kho Hỏa ấm nhưng trực xung Thìn Trụ Năm (-0.3)");
+  } else if(gz.bName === 'Dậu'){
+    score -= 0.4;
+    reasons.push("Chi Dậu Kim tiết khí Thổ, Thương Quan hao tổn tâm trí (-0.4)");
   } else if(gz.bName === 'Hợi' || gz.bName === 'Tý'){
     score -= 1.0;
     reasons.push(`Hàn Thủy ${gz.bName} làm hao mòn nguyên khí (-1.0)`);
